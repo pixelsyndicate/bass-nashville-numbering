@@ -6,8 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'The Bassist\'s Little Nashville Numbering Helper';
-
-  
+  title = 'The Bassist\'s Little Helper';
+  subTitle = 'The Nashville Numbering System';
 
 }
