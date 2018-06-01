@@ -12,7 +12,7 @@ import { BassString } from '../BassString';
 export class FretboardComponent implements OnInit {
 
   fretBoard: FretBoard;
-  bassStrings = 5;
+  bassStrings:number;
   nashNumbers: NashvilleNumbers;
   allNotes: string[];
 
@@ -47,54 +47,91 @@ export class FretboardComponent implements OnInit {
 
   }
 
+  getNashNumberBadgeClass(n: string): string {
+    let toReturn = "badge badge-dark";
+    let isNashNumber = this.isNashNumber(n);
+    if (!isNashNumber)
+      return "badge  badge-dark";
+    else {
+      if (this.nashNumbers['1'].note == n)
+        toReturn = "badge badge-light";
+      if (this.nashNumbers['2'].note == n)
+        toReturn = " badge  badge-secondary";
+      if (this.nashNumbers['3'].note == n)
+        toReturn = "badge  badge-info";
+      if (this.nashNumbers['4'].note == n)
+        toReturn = "badge  badge-success";
+      if (this.nashNumbers['5'].note == n)
+        toReturn = "badge  badge-warning";
+      if (this.nashNumbers['6'].note == n)
+        toReturn = "badge  badge-danger";
+      if (this.nashNumbers['7'].note == n)
+        toReturn = "badge  badge-light";
+    }
+    return toReturn;
+
+  }
+
+  getNashNumberBadgeClassByNum(n: number): string {
+    let toReturn = "badge badge-dark";
+    
+      if (n == 1)
+        return "badge badge-light";
+      if (n == 2)
+      return  " badge  badge-secondary";
+      if (3 == n)
+      return  "badge  badge-info";
+      if (n == 4)
+      return  "badge  badge-success";
+      if (n == 5)
+      return  "badge  badge-warning";
+      if (n == 6)
+      return  "badge  badge-danger";
+      if (n == 7)
+      return  "badge  badge-dark";
+      
+    
+    return toReturn;
+
+  }
+
   isNashNumber(n:string):Boolean{
-    for (let i = 1; i < 7; i++) {
+    for (let i = 1; i < 8; i++) {
     if (this.nashNumbers[i].note == n) {
       return true;
     }
   }}
 
-
-  isNotNashNumber(n: string): Boolean {
-
-    let toReturn: Boolean = true;
-    toReturn =
-      (this.nashNumbers["1"].note != n) &&
-      (this.nashNumbers["2"].note != n) &&
-      (this.nashNumbers["3"].note != n) &&
-      (this.nashNumbers["4"].note != n) &&
-      (this.nashNumbers["5"].note != n) &&
-      (this.nashNumbers["6"].note != n) &&
-      (this.nashNumbers["7"].note != n);
-    return toReturn;
-  }
-
   ngOnInit() {
 
     let bstring: BassString = {
       open: 'B',
-      index: 5,
-      stringType: 5,
+      index: 5, stringType: 5,
       notes: ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B",]
     };
     let estring = {
-      open: 'E', index: 4, stringType: 4,
+      open: 'E', 
+      index: 4, stringType: 4,
       notes: ["F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E",]
     };
     let astring = {
-      open: 'A', index: 3, stringType: 4,
+      open: 'A', 
+      index: 3, stringType: 4,
       notes: ["Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A",]
     };
     let dstring = {
-      open: 'D', index: 2, stringType: 4,
+      open: 'D', 
+      index: 2, stringType: 4,
       notes: ["Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D",]
     };
     let gstring = {
-      open: 'G', index: 1, stringType: 4,
+      open: 'G', 
+      index: 1, stringType: 4,
       notes: ["Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G",]
     };
     let cstring = {
-      open: 'C', index: 0, stringType: 6,
+      open: 'C', 
+      index: 0, stringType: 6,
       notes: ["Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C",]
     };
 
@@ -124,49 +161,8 @@ export class FretboardComponent implements OnInit {
   }
 
   selectRoot(e: Event, str: any, note: any): void {
-    console.log(note + " was selected as rootNote for string " + str.open);
-    let sIndx = str.index;
-    this.setNashNumbers(str, note);
+   
+    this.nashNumbers.set(str,note);
   }
 
-  setNashNumbers(str: any, rootNote: any): void {
-
-    let upStrIdx = this.fretBoard.strings.findIndex(idx => idx.index == str.index - 1);
-    let dnStrIdx = this.fretBoard.strings.findIndex(idx => idx.index == str.index + 1);
-    let aboveString = this.fretBoard.strings[upStrIdx];
-    let belowString = this.fretBoard.strings[dnStrIdx];
-    if (aboveString)
-      console.log('above string found');
-    if (belowString)
-      console.log('below string found');
-
-    // get the index of the rootNote
-    let rNIndex: number = str.notes.indexOf(rootNote);
-
-    let _1st = str.notes[rNIndex];
-    let _2nd = str.notes[rNIndex + 2];
-    let _3rd = str.notes[rNIndex + 4];
-    let _4th = str.notes[rNIndex + 5];//aboveString.notes[rNIndex];
-    let _5th = str.notes[rNIndex + 7];//aboveString.notes[rNIndex + 2];
-    let _6th = str.notes[rNIndex + 9];//aboveString.notes[rNIndex + 4];
-    let _7th = str.notes[rNIndex + 11];//aboveString.notes[rNIndex + 6];
-    this.nashNumbers["1"] = { str: str.open, note: _1st };
-    this.nashNumbers["2"] = { str: str.open, note: _2nd };
-    this.nashNumbers["3"] = { str: aboveString.open, note: _3rd };
-    this.nashNumbers["4"] = { str: aboveString.open, note: _4th };
-    this.nashNumbers["5"] = { str: aboveString.open, note: _5th };
-    this.nashNumbers["6"] = { str: aboveString.open, note: _6th };
-    this.nashNumbers["7"] = { str: aboveString.open, note: _7th };
-
-    //   console.log('nashville numbers are:'
-    //     + str.nashNumbers["1"].str.open + " | " + str.nashNumbers["1"].note
-    //     + str.nashNumbers["2"].str.open + " | " + str.nashNumbers["2"].note
-    //     + str.nashNumbers["3"].str.open + " | " + str.nashNumbers["3"].note
-    //     + str.nashNumbers["4"].str.open + " | " + str.nashNumbers["4"].note
-    //     + str.nashNumbers["5"].str.open + " | " + str.nashNumbers["5"].note
-    //     + str.nashNumbers["6"].str.open + " | " + str.nashNumbers["6"].note
-    //     + str.nashNumbers["7"].str.open + " | " + str.nashNumbers["7"].note);
-    // }
-
-  }
 }

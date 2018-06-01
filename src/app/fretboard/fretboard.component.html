@@ -2,9 +2,11 @@
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-sm">
+    <div class="col-md-2 col-lg-3">
       <div class="form-group">
-        <label for="stringCount">Number of Strings</label>
+        <label for="stringCount">
+          <strong>Number of Strings</strong>
+        </label>
         <select class="form-control" id="stringCount" required [(ngModel)]="bassStrings" name="stringCount">
           <option [value]="4" ng-selected="select">{{4}}</option>
           <option [value]="5">{{5}}</option>
@@ -12,96 +14,144 @@
         </select>
       </div>
     </div>
-    <div class="col-sm">
-      <label for="legend">Coloring Legend</label>
+    <div class="col-md-6 offset-lg-1 offset-xl-2">
 
-      <table class="table table-responsive-sm table-dark table-sm text-center " style="max-width: 300px;">
+      <label for="legend">
+        <strong>Coloring Legend</strong>
+      </label>
+      <table class="table table-responsive-sm table-dark table-sm text-center " style="max-width: 300px; font-family: 'Times New Roman', Times, serif;">
         <tbody>
           <tr>
-            <td>
-                <button type="button" style="min-width: 50px;"  class="btn btn-outline-secondary">2nd</button>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-secondary">ii 
+                <span [ngClass]="getNashNumberBadgeClassByNum(2)">2m</span></button>
             </td>
-            <td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-info">iii
+                  <span [ngClass]="getNashNumberBadgeClassByNum(3)">3m</span>
+              </button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-success">IV
+                  <span [ngClass]="getNashNumberBadgeClassByNum(4)">4</span>
+              </button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-warning">V
+                  <span [ngClass]="getNashNumberBadgeClassByNum(5)">5</span>
+              </button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
               <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
             </td>
             <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-outline-info">3rd</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-outline-success">4th</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-outline-warning">5th</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">6th</button>
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">vi
+                  <span [ngClass]="getNashNumberBadgeClassByNum(6)">6m</span>
+              </button>
             </td>
           </tr>
           <tr>
-            <td>
-                <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">6th</button>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">vi
+                  <span [ngClass]="getNashNumberBadgeClassByNum(6)">6m</span>
+              </button>
             </td>
-            <td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-light">vii&deg;
+                  <span [ngClass]="getNashNumberBadgeClassByNum(7)">7&deg;</span>
+              </button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-primary">I
+                  <span [ngClass]="getNashNumberBadgeClassByNum(1)">1</span>
+              </button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-secondary">ii 
+                <span [ngClass]="getNashNumberBadgeClassByNum(2)">2m</span></button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
               <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
             </td>
             <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-outline-light">7th</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-primary">ROOT</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-outline-secondary">2nd</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-outline-info">3rd</button>
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-info">iii
+                  <span [ngClass]="getNashNumberBadgeClassByNum(3)">3m</span>
+              </button>
             </td>
           </tr>
           <tr>
-            <td>
-                <button type="button" style="min-width: 50px;" class="btn btn-outline-info">3rd</button>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-info">iii
+                  <span [ngClass]="getNashNumberBadgeClassByNum(3)">3m</span>
+              </button>
             </td>
-            <td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-success">IV
+                  <span [ngClass]="getNashNumberBadgeClassByNum(4)">4</span>
+              </button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-warning">V
+                  <span [ngClass]="getNashNumberBadgeClassByNum(5)">5</span>
+              </button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">vi
+                  <span [ngClass]="getNashNumberBadgeClassByNum(6)">6m</span>
+              </button>
+            </td>
+            <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
               <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
             </td>
             <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-outline-warning">5th</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">6th</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-            </td>
-            <td>
-              <button type="button" style="min-width: 50px;" class="btn btn-outline-light">7th</button>
+              <button type="button" style="min-width: 50px;" class="btn btn-outline-light">vii&deg;
+                  <span [ngClass]="getNashNumberBadgeClassByNum(7)">7&deg;</span>
+              </button>
             </td>
           </tr>
 
         </tbody>
       </table>
+
     </div>
+    <div class="w-100"></div>
+    <div class="row" [hidden]="nashNumbers.getNote(1)==''">
+      <label for="yourNumbers">Your Nashville Numbers</label>
+      <br />
+      <div id="yourNumbers" *ngFor="let num of [1,2,3,4,5,6,7]">
+        <div class="col-sm">
+          <span [ngClass]="getNashNumberBadgeClassByNum(num)">{{num}}</span>: {{nashNumbers.getNote(num)}}
+        </div>
+
+      </div>
+
+    </div>
+
+
   </div>
+
+
+  <hr />
   <div class="row">
-    <div class="col-12">
+    <div class="col-sm">
       <table class="table table-responsive table-dark table-hover table-sm text-center">
 
         <thead>
@@ -109,25 +159,44 @@
             <th scope="col">OPEN</th>
             <th scope="col"></th>
             <th scope="col"></th>
-            <th scope="col">0</th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
             <th scope="col"></th>
-            <th scope="col">0</th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
             <th scope="col"></th>
-            <th scope="col">0</th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
             <th scope="col"></th>
-            <th scope="col">0</th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
             <th scope="col"></th>
             <th scope="col"></th>
-            <th scope="col">00</th>
+            <th scope="col">
+              <i class="fas fa-circle"></i>
+              <i class="fas fa-circle"></i>
+            </th>
             <th scope="col"></th>
             <th scope="col"></th>
-            <th scope="col">0</th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
             <th scope="col"></th>
-            <th scope="col">0</th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
             <th scope="col"></th>
-            <th scope="col">0</th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
             <th scope="col"></th>
-            <th scope="col">0</th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
             <th scope="col"></th>
             <th scope="col"></th>
           </tr>
@@ -137,39 +206,63 @@
         <tbody>
           <tr *ngFor="let s of filterStrings(fretBoard.strings, bassStrings).reverse()">
 
-            <th scope="row" style="border-right-width: 2px; border-right-style: double; border-right-color: gold;">{{s.open}}</th>
+            <th scope="row" style="border-right-width: 2px; border-right-style: double; border-right-color: gold;">
+              <button type="button" style="min-width: 50px;" class="btn " (click)="selectRoot($event,s,s.open);" [ngClass]="getNashNumberClass(s.open)">
+                {{s.open}} </button>
+            </th>
             <td *ngFor="let n of s.notes" style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-              <button type="button" style="min-width: 50px;" class="btn " (click)="selectRoot($event,s,n);" 
-              [ngClass]="getNashNumberClass(n)">{{n}}</button>
+              <button type="button" style="min-width: 50px;" class="btn " (click)="selectRoot($event,s,n);" [ngClass]="getNashNumberClass(n)" >
+                {{n}} <span [ngClass]="getNashNumberBadgeClass(n)" [hidden]="!isNashNumber(n)">{{nashNumbers.getNumber(n)}}</span></button>
             </td>
 
           </tr>
         </tbody>
         <tfoot>
-          <th scope="col">OPEN</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col">0</th>
-          <th scope="col"></th>
-          <th scope="col">0</th>
-          <th scope="col"></th>
-          <th scope="col">0</th>
-          <th scope="col"></th>
-          <th scope="col">0</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col">00</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col">0</th>
-          <th scope="col"></th>
-          <th scope="col">0</th>
-          <th scope="col"></th>
-          <th scope="col">0</th>
-          <th scope="col"></th>
-          <th scope="col">0</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
+          <tr>
+            <th scope="col">OPEN</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
+            <th scope="col"></th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
+            <th scope="col"></th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
+            <th scope="col"></th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">
+              <i class="fas fa-circle"></i>
+              <i class="fas fa-circle"></i>
+            </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
+            <th scope="col"></th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
+            <th scope="col"></th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
+            <th scope="col"></th>
+            <th scope="col">
+              <i class="fas fa-circle-notch"></i>
+            </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
         </tfoot>
       </table>
     </div>
