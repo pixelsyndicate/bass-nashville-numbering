@@ -1,0 +1,93 @@
+<div class="container ">
+
+    
+
+<div class="form-group">
+    <label for="stringCount">Number of Strings</label>
+    <select class="form-control" id="stringCount" required
+    
+          required
+          [(ngModel)]="bassStrings" name="stringCount"
+          >
+      <option  [value]="4">{{4}}</option>
+      <option  [value]="5">{{5}}</option>
+      <option  [value]="6">{{6}}</option>
+    </select>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+
+      <thead>
+        <tr >
+          <th scope="col">OPEN</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">00</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+
+
+      <tbody >
+        <tr *ngFor="let s of filterStrings(fretBoard.strings, bassStrings).reverse()"> 
+                 
+            <th scope="row" >{{s.open}}</th>          
+            <td *ngFor="let n of s.notes" >
+              <button type="button" class="btn"
+              (click)="selectRoot($event,s,n);" 
+              [ngClass]="{'btn-primary': nashNumbers['1'].note == n }"
+              
+              >{{n}}</button>
+              </td>
+          
+        </tr>
+      </tbody>
+      <tfoot>
+        <th scope="col">OPEN</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">00</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col">0</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+      </tfoot>
+    </table>
+  </div>
+</div>
