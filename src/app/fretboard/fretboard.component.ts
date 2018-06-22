@@ -12,7 +12,7 @@ import { BassString } from '../BassString';
 export class FretboardComponent implements OnInit {
 
   fretBoard: FretBoard;
-  bassStrings:number;
+  bassStrings: number;
   nashNumbers: NashvilleNumbers;
   allNotes: string[];
 
@@ -74,33 +74,34 @@ export class FretboardComponent implements OnInit {
 
   getNashNumberBadgeClassByNum(n: number): string {
     let toReturn = "badge badge-dark";
-    
-      if (n == 1)
-        return "badge badge-light";
-      if (n == 2)
-      return  " badge  badge-secondary";
-      if (3 == n)
-      return  "badge  badge-info";
-      if (n == 4)
-      return  "badge  badge-success";
-      if (n == 5)
-      return  "badge  badge-warning";
-      if (n == 6)
-      return  "badge  badge-danger";
-      if (n == 7)
-      return  "badge  badge-dark";
-      
-    
+
+    if (n == 1)
+      return "badge badge-light";
+    if (n == 2)
+      return " badge  badge-secondary";
+    if (3 == n)
+      return "badge  badge-info";
+    if (n == 4)
+      return "badge  badge-success";
+    if (n == 5)
+      return "badge  badge-warning";
+    if (n == 6)
+      return "badge  badge-danger";
+    if (n == 7)
+      return "badge  badge-dark";
+
+
     return toReturn;
 
   }
 
-  isNashNumber(n:string):Boolean{
+  isNashNumber(n: string): Boolean {
     for (let i = 1; i < 8; i++) {
-    if (this.nashNumbers[i].note == n) {
-      return true;
+      if (this.nashNumbers[i].note == n) {
+        return true;
+      }
     }
-  }}
+  }
 
   ngOnInit() {
 
@@ -110,27 +111,27 @@ export class FretboardComponent implements OnInit {
       notes: ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B",]
     };
     let estring = {
-      open: 'E', 
+      open: 'E',
       index: 4, stringType: 4,
       notes: ["F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E",]
     };
     let astring = {
-      open: 'A', 
+      open: 'A',
       index: 3, stringType: 4,
       notes: ["Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A",]
     };
     let dstring = {
-      open: 'D', 
+      open: 'D',
       index: 2, stringType: 4,
       notes: ["Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D",]
     };
     let gstring = {
-      open: 'G', 
+      open: 'G',
       index: 1, stringType: 4,
       notes: ["Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G",]
     };
     let cstring = {
-      open: 'C', 
+      open: 'C',
       index: 0, stringType: 6,
       notes: ["Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C",]
     };
@@ -161,8 +162,8 @@ export class FretboardComponent implements OnInit {
   }
 
   selectRoot(e: Event, str: any, note: any): void {
-   
-    this.nashNumbers.set(str,note);
+
+    this.nashNumbers.set(str, note);
   }
 
 }
