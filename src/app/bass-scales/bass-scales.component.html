@@ -1,29 +1,29 @@
+<div class="container-fluid">
 
-
-   <div class="container-fluid">   
-      <hr />
-      <div class="w-100 clearfix"></div>
   <!--title and logo-->
-  <div class="row">
-    <h4>{{title}}<br />
+  <div class="w-100">
+    <h4>{{title}}
+      <br />
       <small>{{ subTitle }}</small>
     </h4>
   </div>
 
 
   <!--SCALES BELOW-->
-  <div class="row">
- 
+  <div class="row justify-content-around">
+
 
     <!-- begin dynamic SCALES -->
     <div class="col-sm" *ngFor="let scale of TheScales">
       <label [for]="scale.name">
-        {{scale.name}} Scale
+        <strong>{{scale.name}} Scale</strong>
       </label>
-      <table class="table table-responsive-sm table-dark table-sm text-center scale-table" [id]="scale.name">
+      <table class="table table-dark table-sm text-center scale-table" [id]="scale.name">
         <tr *ngFor="let row of scale.blocks">
           <td *ngFor="let cell of row">
-            <button type="button" class="btn" [ngClass]="{ 'btn-dark': !cell.isScale, 'btn-outline-danger': cell.isRoot, 'btn-outline-secondary': cell.isScale && !cell.isRoot }">
+            <button type="button" class="btn" 
+            [ngClass]="{ 'btn-dark': !cell.isScale, 'btn-outline-danger': cell.isRoot, 'btn-outline-secondary': cell.isScale && !cell.isRoot }">
+            <!-- begin badge or no-badge -->
               <span *ngIf="cell.isScale" class="badge" [ngClass]="{'badge-danger': cell.isRoot, 'badge-secondary':cell.isScale}">{{cell.finger}}</span>
               <span *ngIf="!cell.isScale">&nbsp;</span>
             </button>

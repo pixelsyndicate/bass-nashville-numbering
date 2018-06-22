@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Scale } from '../Scale';
-import { MajorScale, MajorPentatonicScale, MinorScale, MinorPentatonicScale, BluesScale } from '../Scale';
 
-
+import {Scale, MajorScale, MajorPentatonicScale, MinorScale, MinorPentatonicScale, BluesScale } from '../Scale';
 
 
 @Component({
@@ -14,16 +12,16 @@ export class BassScalesComponent implements OnInit {
 
   title = 'Five Common Scales';
   subTitle = 'The numbers represent which finger you should use, and the red color indicates a starting position (root note)';
-  TheScales = [];
+  TheScales:Scale[];
 
   private majorScale: MajorScale;
-  private majorPentatonicScale: Scale;
-  private minorScale: Scale;
-  private minorPentatonicScale: Scale;
-  private bluesScale: Scale;
+  private majorPentatonicScale: MajorPentatonicScale;
+  private minorScale: MinorScale;
+  private minorPentatonicScale: MinorPentatonicScale;
+  private bluesScale: BluesScale;
 
   constructor() {
-
+    this.TheScales = [];
   }
 
   ngOnInit() {

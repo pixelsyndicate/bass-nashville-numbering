@@ -18,7 +18,8 @@
     <a class="nav-item nav-link" href="#" [ngClass]="{'active': !showScales}" (click)="showScales = false">Nashville Numbering</a>
   </nav>
 
-
+  <div class="container-fluid">
+  <hr />
 <div class="row" if="fretboard" [ngClass]="{'d-none': showScales}">
   <div class="col">
     <strong> Instructions:</strong> Select the number of strings on your bass. Click the note that is the root for the song (what
@@ -34,6 +35,4 @@
     <app-bass-scales></app-bass-scales>
   </div>
 </div>
-<script>
-  document.querySelector('#fretboard').classList.remove('d-none');
-</script>
+</div>
