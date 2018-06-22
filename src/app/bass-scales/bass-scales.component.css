@@ -1,0 +1,14 @@
+.scale-table {
+    font-family: 'Times New Roman', Times, serif;
+    max-width: 300px;
+  }
+  
+    .scale-table tr td {
+      border-right-color: goldenrod;
+      border-right-style: solid;
+      border-right-width: 1px;
+    }
+  
+      .scale-table tr td button {
+        min-width: 50px;
+      }

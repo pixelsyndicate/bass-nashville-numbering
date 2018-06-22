@@ -11,9 +11,29 @@
     </h2>
   </div>
 </div>
-<div class="col">
- <strong> Instructions:</strong> Select the number of strings on your bass. Click the note that is the root for the song (what `<em>key</em>` is the song in?)
+
+<nav class="nav nav-pills nav-fill">
+
+    <a class="nav-item nav-link" href="#" [ngClass]="{'active': showScales}"  (click)="showScales = true">Scales</a>
+    <a class="nav-item nav-link" href="#" [ngClass]="{'active': !showScales}" (click)="showScales = false">Nashville Numbering</a>
+  </nav>
+
+
+<div class="row" if="fretboard" [ngClass]="{'d-none': showScales}">
+  <div class="col">
+    <strong> Instructions:</strong> Select the number of strings on your bass. Click the note that is the root for the song (what
+    `
+    <em>key</em>` is the song in?)
+  </div>
+  <div class="col">
+    <app-fretboard></app-fretboard>
+  </div>
 </div>
-<div class="col">
-  <app-fretboard></app-fretboard>
+<div class="row" id="scales" [ngClass]="{'d-none': !showScales}">
+  <div class="col">
+    <app-bass-scales></app-bass-scales>
+  </div>
 </div>
+<script>
+  document.querySelector('#fretboard').classList.remove('d-none');
+</script>

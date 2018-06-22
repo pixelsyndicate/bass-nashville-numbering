@@ -48,7 +48,7 @@ export class FretboardComponent implements OnInit {
   }
 
   getNashNumberBadgeClass(n: string): string {
-    let toReturn = "badge badge-dark";
+    let toReturn = "hidden";
     let isNashNumber = this.isNashNumber(n);
     if (!isNashNumber)
       return "badge  badge-dark";
@@ -56,17 +56,17 @@ export class FretboardComponent implements OnInit {
       if (this.nashNumbers['1'].note == n)
         toReturn = "badge badge-light";
       if (this.nashNumbers['2'].note == n)
-        toReturn = " badge  badge-secondary";
+        toReturn = " badge badge-secondary";
       if (this.nashNumbers['3'].note == n)
-        toReturn = "badge  badge-info";
+        toReturn = "badge badge-info";
       if (this.nashNumbers['4'].note == n)
-        toReturn = "badge  badge-success";
+        toReturn = "badge badge-success";
       if (this.nashNumbers['5'].note == n)
-        toReturn = "badge  badge-warning";
+        toReturn = "badge badge-warning";
       if (this.nashNumbers['6'].note == n)
-        toReturn = "badge  badge-danger";
+        toReturn = "badge badge-danger";
       if (this.nashNumbers['7'].note == n)
-        toReturn = "badge  badge-light";
+        toReturn = "badge badge-light";
     }
     return toReturn;
 
@@ -78,17 +78,17 @@ export class FretboardComponent implements OnInit {
     if (n == 1)
       return "badge badge-light";
     if (n == 2)
-      return " badge  badge-secondary";
-    if (3 == n)
-      return "badge  badge-info";
+      return " badge badge-secondary";
+    if (n == 3)
+      return "badge badge-info";
     if (n == 4)
-      return "badge  badge-success";
+      return "badge badge-success";
     if (n == 5)
-      return "badge  badge-warning";
+      return "badge badge-warning";
     if (n == 6)
-      return "badge  badge-danger";
+      return "badge badge-danger";
     if (n == 7)
-      return "badge  badge-dark";
+      return "badge badge-dark";
 
 
     return toReturn;
@@ -110,27 +110,27 @@ export class FretboardComponent implements OnInit {
       index: 5, stringType: 5,
       notes: ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B",]
     };
-    let estring = {
+    let estring: BassString = {
       open: 'E',
       index: 4, stringType: 4,
       notes: ["F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E",]
     };
-    let astring = {
+    let astring: BassString = {
       open: 'A',
       index: 3, stringType: 4,
       notes: ["Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A",]
     };
-    let dstring = {
+    let dstring: BassString = {
       open: 'D',
       index: 2, stringType: 4,
       notes: ["Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D",]
     };
-    let gstring = {
+    let gstring: BassString = {
       open: 'G',
       index: 1, stringType: 4,
       notes: ["Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G",]
     };
-    let cstring = {
+    let cstring: BassString = {
       open: 'C',
       index: 0, stringType: 6,
       notes: ["Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C",]
@@ -138,9 +138,8 @@ export class FretboardComponent implements OnInit {
 
     this.bassStrings = this.fretBoard.addStrings([bstring, estring, astring, dstring, gstring, cstring]);
 
+    // this is the default... or set it via cookies?
     this.bassStrings = 4;
-
-    //this.fretBoard.strings =  [bstring, estring, astring, dstring, gstring, cstring] ;
 
     this.allNotes = [];
 
