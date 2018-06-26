@@ -6,10 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'The Bassist\'s Little Helper';
-  subTitle = 'The Nashville Numbering System';
 
-  stringsSelected: number;
-
+ bassStrings: number = 5;
+ showScales:boolean = true;
   
 }

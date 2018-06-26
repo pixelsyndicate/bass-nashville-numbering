@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 import { FretBoard } from '../FretBoard';
 import { NashvilleNumbers } from '../NashvilleNumbers';
@@ -11,14 +11,20 @@ import { BassString } from '../BassString';
 })
 export class FretboardComponent implements OnInit {
 
+  @Input() bassStrings: number;
+
+ // showLegend:boolean = false;
   fretBoard: FretBoard;
-  bassStrings: number;
   nashNumbers: NashvilleNumbers;
   allNotes: string[];
 
+  // toggleLegend():void {
+  //   this.showLegend = !this.showLegend;
+  // }
+ 
+
   constructor() {
     this.fretBoard = new FretBoard();
-    this.fretBoard.stringCount = this.bassStrings;
     this.nashNumbers = new NashvilleNumbers();
   }
 
@@ -105,6 +111,8 @@ export class FretboardComponent implements OnInit {
 
   ngOnInit() {
 
+    
+    this.fretBoard.stringCount = this.bassStrings;
     let bstring: BassString = {
       open: 'B',
       index: 5, stringType: 5,
@@ -136,10 +144,7 @@ export class FretboardComponent implements OnInit {
       notes: ["Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C",]
     };
 
-    this.bassStrings = this.fretBoard.addStrings([bstring, estring, astring, dstring, gstring, cstring]);
-
-    // this is the default... or set it via cookies?
-    this.bassStrings = 4;
+    let initialStrings = this.fretBoard.addStrings([bstring, estring, astring, dstring, gstring, cstring]);
 
     this.allNotes = [];
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import {Scale, MajorScale, MajorPentatonicScale, MinorScale, MinorPentatonicScale, BluesScale } from '../Scale';
 
@@ -10,6 +10,7 @@ import {Scale, MajorScale, MajorPentatonicScale, MinorScale, MinorPentatonicScal
 })
 export class BassScalesComponent implements OnInit {
 
+  @Input() bassStrings: number;
   title = 'Five Common Scales';
   subTitle = 'The numbers represent which finger you should use, and the red color indicates a starting position (root note)';
   TheScales:Scale[];
@@ -34,19 +35,6 @@ export class BassScalesComponent implements OnInit {
     this.bluesScale = new BluesScale();
     this.TheScales = [this.majorScale, this.majorPentatonicScale, this.minorScale, this.minorPentatonicScale, this.bluesScale];
 
-    // this.TheScales.forEach(scale => {
-    //   scale.tagOctiveRoot();
-    //   let displayString = scale.name + " Scale -- \n\r";
-    //   scale.blocks.forEach(row => {
-
-    //     row.forEach(cell => {
-    //       displayString = displayString + (cell.isScale ? "[" + cell.finger + (cell.isRoot ? "*" : " ") + "] | " : "[  ] | ");
-    //     });
-    //     displayString = displayString + "\n\r";
-
-    //   });
-    //   console.log(displayString);
-    // });
 
   }
 

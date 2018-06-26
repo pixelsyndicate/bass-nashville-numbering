@@ -1,30 +1,24 @@
+<div class="col">
+  <strong>How to use the Nashville Numbers:</strong><br />
+  Click the note that is the root for the song (what `
+  <em>key</em>` is the song in?)
+</div>
 
-  <div class="col-sm-12">
-    <strong> Instructions:</strong>
-    Select the number of strings on your bass. Click the note that is the root for the song (what `
-    <em>key</em>` is the song in?)
-  </div>
+<div class="col">
+  <p>
+    <button class="btn btn-info" type="button" 
+    data-toggle="collapse" data-target="#collapseLegend" 
+    aria-expanded="false" aria-controls="collapseLegend"
+    >
+      View The Coloring Legend
+    </button>
+  </p>
+ 
+</div>
+<div class="collapse" id="collapseLegend">
 
-
-
-  <div class="col-md-2 ">
-    <div class="form-group">
-      <label for="stringCount">
-        <strong>Number of Strings</strong>
-      </label>
-      <select class="form-control" id="stringCount" required [(ngModel)]="bassStrings" name="stringCount">
-        <option [value]="4" ng-selected="select">{{4}}</option>
-        <option [value]="5">{{5}}</option>
-        <option [value]="6">{{6}}</option>
-      </select>
-    </div>
-  </div>
-  <div class="col-md-10">
-
-    <label for="legend">
-      <strong>Coloring Legend</strong>
-    </label>
-    <table class="table table-responsive-sm table-dark table-sm text-center " id="legend" style="max-width: 300px; font-family: 'Times New Roman', Times, serif;">
+    <table class="table table-responsive-sm table-dark table-sm text-center "
+     id="legend" style="max-width: 300px; font-family: 'Times New Roman', Times, serif;">
       <tbody>
         <tr>
           <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
@@ -140,14 +134,12 @@
 
   </div>
 
-
-
 <div class="row col" id="yourNumbers" [ngClass]="{'d-none': nashNumbers.getNote(1)==''}">
-    <div class="col-sm-12">
-      <label for="yourNumbers">
-    <strong>Your Nashville Numbers</strong>
-  </label>
-</div>
+  <div class="col-sm-12">
+    <label for="yourNumbers">
+      <strong>Your Nashville Numbers</strong>
+    </label>
+  </div>
   <div class="col" *ngFor="let num of [1,2,3,4,5,6,7]">
 
     <span [ngClass]="getNashNumberBadgeClassByNum(num)" style="font-size: 1em;">{{num}}</span>: {{nashNumbers.getNote(num)}}
