@@ -22,7 +22,7 @@ export class BassScalesComponent implements OnInit {
 
   ngOnInit() {
 
-    this.TheScales = this.stringsService.getScales(this.bassStrings);
+    this.TheScales = this.stringsService.getScales();
     
 
   }
