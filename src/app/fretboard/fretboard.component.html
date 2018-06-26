@@ -1,138 +1,135 @@
 <div class="col">
-  <strong>How to use the Nashville Numbers:</strong><br />
-  Click the note that is the root for the song (what `
+  <strong>How to use the Nashville Numbers:</strong>
+  <br /> Click the note that is the root for the song (what `
   <em>key</em>` is the song in?)
 </div>
 
 <div class="col">
   <p>
-    <button class="btn btn-info" type="button" 
-    data-toggle="collapse" data-target="#collapseLegend" 
-    aria-expanded="false" aria-controls="collapseLegend"
-    >
-      View The Coloring Legend
+    <button class="btn btn-sm btn-info" type="button" data-toggle="collapse" data-target="#collapseLegend" aria-expanded="false"
+      aria-controls="collapseLegend">
+      View The Color Legend
     </button>
   </p>
- 
+
 </div>
 <div class="collapse" id="collapseLegend">
 
-    <table class="table table-responsive-sm table-dark table-sm text-center "
-     id="legend" style="max-width: 300px; font-family: 'Times New Roman', Times, serif;">
-      <tbody>
-        <tr>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-secondary">ii
-              <span [ngClass]="getNashNumberBadgeClassByNum(2)">2m</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-info">iii
-              <span [ngClass]="getNashNumberBadgeClassByNum(3)">3m</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-success">IV
-              <span [ngClass]="getNashNumberBadgeClassByNum(4)">4</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-warning">V
-              <span [ngClass]="getNashNumberBadgeClassByNum(5)">5</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-          </td>
-          <td>
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">vi
-              <span [ngClass]="getNashNumberBadgeClassByNum(6)">6m</span>
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">vi
-              <span [ngClass]="getNashNumberBadgeClassByNum(6)">6m</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-light">vii&deg;
-              <span [ngClass]="getNashNumberBadgeClassByNum(7)">7&deg;</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-primary">I
-              <span [ngClass]="getNashNumberBadgeClassByNum(1)">1</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-secondary">ii
-              <span [ngClass]="getNashNumberBadgeClassByNum(2)">2m</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-          </td>
-          <td>
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-info">iii
-              <span [ngClass]="getNashNumberBadgeClassByNum(3)">3m</span>
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-info">iii
-              <span [ngClass]="getNashNumberBadgeClassByNum(3)">3m</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-success">IV
-              <span [ngClass]="getNashNumberBadgeClassByNum(4)">4</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-warning">V
-              <span [ngClass]="getNashNumberBadgeClassByNum(5)">5</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">vi
-              <span [ngClass]="getNashNumberBadgeClassByNum(6)">6m</span>
-            </button>
-          </td>
-          <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-            <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
-          </td>
-          <td>
-            <button type="button" style="min-width: 50px;" class="btn btn-outline-light">vii&deg;
-              <span [ngClass]="getNashNumberBadgeClassByNum(7)">7&deg;</span>
-            </button>
-          </td>
-        </tr>
+  <table class="table table-responsive-sm table-dark table-sm text-center " id="legend" style="max-width: 300px; font-family: 'Times New Roman', Times, serif;">
+    <tbody>
+      <tr>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-secondary">ii
+            <span [ngClass]="getNashNumberBadgeClassByNum(2)">2m</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-info">iii
+            <span [ngClass]="getNashNumberBadgeClassByNum(3)">3m</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-success">IV
+            <span [ngClass]="getNashNumberBadgeClassByNum(4)">4</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-warning">V
+            <span [ngClass]="getNashNumberBadgeClassByNum(5)">5</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+        </td>
+        <td>
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">vi
+            <span [ngClass]="getNashNumberBadgeClassByNum(6)">6m</span>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">vi
+            <span [ngClass]="getNashNumberBadgeClassByNum(6)">6m</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-light">vii&deg;
+            <span [ngClass]="getNashNumberBadgeClassByNum(7)">7&deg;</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-primary">I
+            <span [ngClass]="getNashNumberBadgeClassByNum(1)">1</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-secondary">ii
+            <span [ngClass]="getNashNumberBadgeClassByNum(2)">2m</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+        </td>
+        <td>
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-info">iii
+            <span [ngClass]="getNashNumberBadgeClassByNum(3)">3m</span>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-info">iii
+            <span [ngClass]="getNashNumberBadgeClassByNum(3)">3m</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-success">IV
+            <span [ngClass]="getNashNumberBadgeClassByNum(4)">4</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-warning">V
+            <span [ngClass]="getNashNumberBadgeClassByNum(5)">5</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-danger">vi
+            <span [ngClass]="getNashNumberBadgeClassByNum(6)">6m</span>
+          </button>
+        </td>
+        <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+          <button type="button" style="min-width: 50px;" class="btn btn-dark">&nbsp;</button>
+        </td>
+        <td>
+          <button type="button" style="min-width: 50px;" class="btn btn-outline-light">vii&deg;
+            <span [ngClass]="getNashNumberBadgeClassByNum(7)">7&deg;</span>
+          </button>
+        </td>
+      </tr>
 
-      </tbody>
-    </table>
+    </tbody>
+  </table>
 
-  </div>
+</div>
 
 <div class="row col" id="yourNumbers" [ngClass]="{'d-none': nashNumbers.getNote(1)==''}">
   <div class="col-sm-12">
@@ -148,10 +145,7 @@
 </div>
 
 <hr />
-<div class="col">
-
-
-
+<div class="row">
   <div class="table-responsive">
     <table class="table table-dark table-sm text-center">
       <thead>
@@ -208,7 +202,9 @@
 
           <th scope="row" style="border-right-width: 2px; border-right-style: double; border-right-color: gold;">
             <button type="button" style="min-width: 50px;" class="btn " (click)="selectRoot($event,s,s.open);" [ngClass]="getNashNumberClass(s.open)">
-              {{s.open}} </button>
+              {{s.open}}
+              <span [ngClass]="getNashNumberBadgeClass(s.open)" [hidden]="!isNashNumber(s.open)">{{nashNumbers.getNumber(s.open)}}</span>
+            </button>
           </th>
           <td *ngFor="let n of s.notes" style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
             <button type="button" style="min-width: 50px;" class="btn " (click)="selectRoot($event,s,n);" [ngClass]="getNashNumberClass(n)">

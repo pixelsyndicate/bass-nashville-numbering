@@ -36,11 +36,13 @@ export class MajorScale extends Scale {
     constructor() {
         super("Major");
         this.root = [1, 2];
-        this.blocks = [
+        
+        this.blocks.push(
             [{ isScale: true, isRoot: false, finger: 1 }, { isScale: false, isRoot: false, finger: 2 }, { isScale: true, isRoot: false, finger: 3 }, { isScale: true, isRoot: false, finger: 4 }],
             [{ isScale: true, isRoot: false, finger: 1 }, { isScale: true, isRoot: false, finger: 2 }, { isScale: false, isRoot: false, finger: 3 }, { isScale: true, isRoot: false, finger: 4 }],
             [{ isScale: false, isRoot: false, finger: 1 }, { isScale: true, isRoot: true, finger: 2 }, { isScale: false, isRoot: false, finger: 3 }, { isScale: true, isRoot: false, finger: 4 }]
-        ];
+        );
+       
         this.tagOctiveRoot();
     }
 

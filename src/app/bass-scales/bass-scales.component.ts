@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import {Scale, MajorScale, MajorPentatonicScale, MinorScale, MinorPentatonicScale, BluesScale } from '../Scale';
-
+import { Scale } from '../Scale';
+import { StringsService } from '../strings.service';
 
 @Component({
   selector: 'app-bass-scales',
@@ -15,26 +14,16 @@ export class BassScalesComponent implements OnInit {
   subTitle = 'The numbers represent which finger you should use, and the red color indicates a starting position (root note)';
   TheScales:Scale[];
 
-  private majorScale: MajorScale;
-  private majorPentatonicScale: MajorPentatonicScale;
-  private minorScale: MinorScale;
-  private minorPentatonicScale: MinorPentatonicScale;
-  private bluesScale: BluesScale;
 
-  constructor() {
+
+  constructor(private stringsService: StringsService) {
     this.TheScales = [];
   }
 
   ngOnInit() {
 
+    this.TheScales = this.stringsService.getScales(this.bassStrings);
     
-    this.majorScale = new MajorScale();
-    this.majorPentatonicScale = new MajorPentatonicScale();
-    this.minorScale = new MinorScale();
-    this.minorPentatonicScale = new MinorPentatonicScale();
-    this.bluesScale = new BluesScale();
-    this.TheScales = [this.majorScale, this.majorPentatonicScale, this.minorScale, this.minorPentatonicScale, this.bluesScale];
-
 
   }
 
