@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { StringsService } from '../strings.service';
+import { BassService } from '../bass.service';
 
 import { FretBoard } from '../FretBoard';
 import { NashvilleNumbers } from '../NashvilleNumbers';
-import { BassString } from '../BassString';
+
 
 @Component({
   selector: 'app-fretboard',
@@ -24,14 +24,21 @@ export class FretboardComponent implements OnInit {
   // }
 
 
-  constructor(private stringsService: StringsService) {
+  constructor(private bassService: BassService) {
 
     this.fretBoard = new FretBoard();
     this.nashNumbers = new NashvilleNumbers();
   }
 
  
-
+  isNashNumber(n: string): Boolean {
+    for (let i = 1; i < 8; i++) {
+      if (this.nashNumbers[i].note == n) {
+        return true;
+      }
+    }
+  }
+  
   getNashNumberClass(n: string): string {
     let toReturn = "btn-dark";
     if (!this.isNashNumber(n))
@@ -104,19 +111,11 @@ export class FretboardComponent implements OnInit {
 
   }
 
-  isNashNumber(n: string): Boolean {
-    for (let i = 1; i < 8; i++) {
-      if (this.nashNumbers[i].note == n) {
-        return true;
-      }
-    }
-  }
+ 
 
   ngOnInit() {
 
-    this.fretBoard.addStrings(this.stringsService.getStrings());
-    this.allNotes = this.stringsService.getNotes();
-
+    this.fretBoard.addStrings(this.bassService.getStrings());
   }
 
   filterStrings(stringObjs: any[], strType: number) {
@@ -133,4 +132,9 @@ export class FretboardComponent implements OnInit {
     this.nashNumbers.set(str, note);
   }
 
+  clearRoot(e:Event){
+    this.nashNumbers.unset();
+  }
+
 }
+

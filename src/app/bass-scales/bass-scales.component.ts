@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Scale } from '../Scale';
-import { StringsService } from '../strings.service';
+import { ScaleService } from '../bass.service';
 
 @Component({
   selector: 'app-bass-scales',
@@ -14,17 +14,12 @@ export class BassScalesComponent implements OnInit {
   subTitle = 'The numbers represent which finger you should use, and the red color indicates a starting position (root note)';
   TheScales:Scale[];
 
-
-
-  constructor(private stringsService: StringsService) {
+  constructor(private scaleService: ScaleService) {
     this.TheScales = [];
   }
 
   ngOnInit() {
-
-    this.TheScales = this.stringsService.getScales();
-    
-
+    this.TheScales = this.scaleService.getScales();  
   }
 
 }
