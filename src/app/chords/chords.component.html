@@ -1,0 +1,87 @@
+<div class="col">
+  <p><u>Color Guide</u></p>
+  <p>WHITE = 1st Finger</p>
+  <p>BLUE = 2nd Finger</p>
+  <p>GREEN = 3rd Finger</p>
+  <p>YELLOW = 4th Finger</p>
+
+</div>
+<div class="col">
+
+  <p><strong>Closed Voice </strong></p>
+  <p>C Major 7 </p>
+
+    <div class="table-responsive">
+      <table class="table table-dark table-sm text-center">
+        <thead>
+          <tr>
+            <th scope="col" *ngFor="let m of fretboard.markers; let i=index">
+              <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
+            </th>
+          </tr>
+        </thead>  
+        <tbody>
+          <tr *ngFor="let str of p.filterStrings(fretboard.strings, 4).reverse()">
+            <td *ngFor="let note of str.notes; let i = index"
+            style="border-right-style: ridge; border-right-color:darkgoldenrod;" 
+            [ngStyle]="{'border-right-width':i==0 ? '8px': '3px'}">
+              
+              <!-- <app-fretboard-fret [s]="str" [note]="note" [fbc]="this.fretboard" [i]="index"></app-fretboard-fret> -->
+              <button type="button" style="min-width: 50px;" class="btn btn-dark"  > 
+               <span  *ngIf="i==0">{{str.open}}</span> 
+               <span  *ngIf="i>0">&nbsp;</span> 
+
+
+               
+                  <span *ngIf="str.open == closedVoice.cmaj7.bassString && i == closedVoice.cmaj7.fret" 
+                  [ngClass]="badge" >{{closedVoice.cmaj7[i].finger}}</span> 
+                  
+                
+                </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="col" *ngFor="let m of fretboard.markers; let i=index">
+              <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <div class="row">template
+      <div class="table-responsive">
+          <table class="table table-dark table-sm text-center">
+            <thead>
+              <tr>
+                <th scope="col" *ngFor="let m of fretboard.markers; let i=index">
+                  <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
+                </th>
+              </tr>
+            </thead>  
+            <tbody>
+              <tr *ngFor="let str of p.filterStrings(fretboard.strings, 4).reverse()">
+                <td *ngFor="let note of str.notes; let i = index"
+                style="border-right-style: ridge; border-right-color:darkgoldenrod;" 
+                [ngStyle]="{'border-right-width':i==0 ? '8px': '3px'}">
+                  <!-- <app-fretboard-fret [s]="str" [note]="note" [fbc]="this.fretboard" [i]="index"></app-fretboard-fret> -->
+                  <button type="button" style="min-width: 50px;" class="btn btn-dark"  > 
+                   <span  *ngIf="i==0">{{str.open}}</span> 
+                   <span  *ngIf="i>0">&nbsp;</span> 
+                      <!-- <span [ngClass]="badge" >69</span>  -->
+                      </button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="col" *ngFor="let m of fretboard.markers; let i=index">
+                  <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
+                </th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+  </div>

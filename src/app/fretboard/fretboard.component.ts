@@ -4,6 +4,7 @@ import { BassService } from '../bass.service';
 
 import { FretBoard } from '../FretBoard';
 import { NashvilleNumbers } from '../NashvilleNumbers';
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -12,11 +13,11 @@ import { NashvilleNumbers } from '../NashvilleNumbers';
   styleUrls: ['./fretboard.component.css']
 })
 export class FretboardComponent implements OnInit {
-
+  @Input() p: AppComponent;
   @Input() bassStrings: number;
 
   // showLegend:boolean = false;
-  fretBoard: FretBoard;
+  fretboard: FretBoard;
   nashNumbers: NashvilleNumbers;
   allNotes: string[];
   // toggleLegend():void {
@@ -26,7 +27,7 @@ export class FretboardComponent implements OnInit {
 
   constructor(private bassService: BassService) {
 
-    this.fretBoard = new FretBoard();
+    this.fretboard = new FretBoard();
     this.nashNumbers = new NashvilleNumbers();
   }
 
@@ -115,20 +116,12 @@ export class FretboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.fretBoard.addStrings(this.bassService.getStrings());
+    this.fretboard.addStrings(this.bassService.getStrings());
   }
 
-  filterStrings(stringObjs: any[], strType: number) {
-    let toReturn = [];
-    stringObjs.forEach(e => {
-      if (e.stringType as number <= strType)
-        toReturn.push(e);
-    });
-    return toReturn;
-  }
+ 
 
   selectRoot(e: Event, str: any, note: any): void {
-
     this.nashNumbers.set(str, note);
   }
 

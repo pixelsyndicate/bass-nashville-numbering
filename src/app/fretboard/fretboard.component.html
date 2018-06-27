@@ -23,7 +23,7 @@
     <table class="table table-dark table-sm text-center">
       <thead>
         <tr>
-          <th scope="col" *ngFor="let m of fretBoard.markers; let i=index">
+          <th scope="col" *ngFor="let m of fretboard.markers; let i=index">
             <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
           </th>
         </tr>
@@ -31,7 +31,7 @@
 
 
       <tbody>
-        <tr *ngFor="let str of filterStrings(fretBoard.strings, bassStrings).reverse()">
+        <tr *ngFor="let str of p.filterStrings(fretboard.strings, bassStrings).reverse()">
           <td *ngFor="let note of str.notes; let i = index" 
           style="border-right-style: ridge; border-right-color:darkgoldenrod;" 
           [ngStyle]="{'border-right-width':i==0 ? '8px': '3px'}">
@@ -41,7 +41,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <th scope="col" *ngFor="let m of fretBoard.markers; let i=index">
+          <th scope="col" *ngFor="let m of fretboard.markers; let i=index">
             <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
           </th>
         </tr>

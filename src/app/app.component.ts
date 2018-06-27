@@ -7,7 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+
  bassStrings: number = 5;
- showScales:boolean = true;
+
+ showPage:string;
+
+  filterStrings(stringObjs: any[], strType: number) {
+    let toReturn = [];
+    stringObjs.forEach(e => {
+      if (e.stringType as number <= strType)
+        toReturn.push(e);
+    });
+    return toReturn;
+  }
   
 }

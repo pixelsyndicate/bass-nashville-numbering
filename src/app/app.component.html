@@ -2,12 +2,15 @@
 
   <div class="col-sm-12">
       <nav class="nav nav-pills flex-column flex-sm-row">
-          <a class="flex-sm-fill text-sm-center nav-link" href="#" 
-          [ngClass]="{'active': showScales}" 
-          (click)="showScales = true">Scales</a>
-          <a class="flex-sm-fill text-sm-center nav-link" href="#" 
-          [ngClass]="{'active': !showScales}" 
-          (click)="showScales = false">Nashville Numbering</a>
+          <a class="flex-sm-fill text-sm-center nav-link" href="#" [ngClass]="{'active': showPage == 'scales'}" 
+          (click)="showPage = 'scales'">Scales</a>
+
+          <a class="flex-sm-fill text-sm-center nav-link" href="#" [ngClass]="{'active': showPage == 'fretboard'}" 
+          (click)="showPage = 'fretboard'">Nashville Numbering</a>
+
+          <a class="flex-sm-fill text-sm-center nav-link" href="#" [ngClass]="{'active': showPage == 'chords'}" 
+          (click)="showPage = 'chords'">Chords</a>
+       
        
       <form class="form-inline ml-sm-2">
         <div class="input-group">
@@ -28,14 +31,20 @@
     <p> <strong> TIP:</strong>
       Select the number of strings on your bass.</p>     
     </div>
-  <div class="col-sm-12" id="fretboard" [ngClass]="{'d-none': showScales}">
+  <div class="col-sm-12" id="fretboard" [ngClass]="{'d-none': showPage!='fretboard'}">
 
-    <app-fretboard [bassStrings]="bassStrings"></app-fretboard>
-
-  </div>
-  <div class="col-sm-12" id="scales" [ngClass]="{'d-none': !showScales}">
-
-    <app-bass-scales [bassStrings]="bassStrings"></app-bass-scales>
+    <app-fretboard [bassStrings]="bassStrings"  [p]="this"></app-fretboard>
 
   </div>
+  <div class="col-sm-12" id="scales" [ngClass]="{'d-none': showPage!='scales'}">
+
+    <app-bass-scales [bassStrings]="bassStrings" ></app-bass-scales>
+
+  </div>
+
+  <div class="col-sm-12" id="chords" [ngClass]="{'d-none': showPage!='chords'}">
+
+      <app-chords [bassStrings]="bassStrings" [p]="this"></app-chords>
+  
+    </div>
 </div>
