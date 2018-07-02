@@ -1,0 +1,32 @@
+<tr *ngFor="let str of strings.reverse()">
+{{str.notes.length}}
+        <td *ngFor="let note of str.notes; index as n; first as isFirst" style="border-right-style: ridge; border-right-color:darkgoldenrod;" [ngStyle]="{'border-right-width':n==0 ? '8px': '3px'}">
+                    
+          <ng-container *ngIf="isFirst; then openStringTemplate; else notOpenStrTemplate"> </ng-container>
+          <ng-template #openStringTemplate>
+            <button type="button" style="min-width: 50px;" class="btn btn-dark">
+              {{str.open}}
+            </button>
+          </ng-template>
+          <ng-template #notOpenStrTemplate>
+            <!-- todo: if current string + block is known chordblock, generate special button -->
+            <ng-container *ngIf="isChordNote(openVoice[0], str.open, n); then isChordNoteTemplate; else notChordNoteTemplate"></ng-container>
+            <ng-template #isChordNoteTemplate>
+             <input type="hidden" ng-model="let cb = getChordBlock(openVoice[0], str.open, n)">
+                <button  
+                  type="button" style="min-width: 50px;" class="btn " 
+                  [ngClass]="getChordBlockClass(getChordBlock(openVoice[0], str.open, n))">
+                    <span >{{getChordBlock(openVoice[0], str.open, n).note}}
+                      <span class="badge badge-pill badge-dark">{{getChordBlock(openVoice[0], str.open, n).finger}}</span>
+                    </span>
+                  </button>
+            </ng-template>
+            <ng-template #notChordNoteTemplate>
+                <!-- current string = {{str.open}}, current note index = {{n}} is not a chord note; -->
+                <button type="button" style="min-width: 50px;" 
+                class="btn btn-dark">&nbsp;</button> 
+            </ng-template>
+          </ng-template>
+          
+        </td>
+      </tr>

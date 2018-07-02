@@ -32,24 +32,3 @@ export class Scale {
 }
 
 
-
-import { ChordBlock } from './ScaleBlock';
-
-export class Chord {
-
-    
-    constructor(n: string) {
-        this.name = n;
-        this.blocks = [];
-    }
-
-    blocks: ChordBlock[][];
-    name: string;
-    rows: number = 4;
-    columns: number = 4;
-    root: number[];
-
-    getChordBlock(row: number, column: number): ChordBlock {
-        return this.blocks[row][column];
-    }
-}
