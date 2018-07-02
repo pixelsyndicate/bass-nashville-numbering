@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { BassService } from '../bass.service';
+import { BassService } from '../Services/bass.service';
 
 import { FretBoard } from '../FretBoard';
 import { NashvilleNumbers } from '../NashvilleNumbers';
@@ -20,6 +20,7 @@ export class FretboardComponent implements OnInit {
   fretboard: FretBoard;
   nashNumbers: NashvilleNumbers;
   allNotes: string[];
+  bs: BassService;
   // toggleLegend():void {
   //   this.showLegend = !this.showLegend;
   // }
@@ -29,6 +30,7 @@ export class FretboardComponent implements OnInit {
 
     this.fretboard = new FretBoard();
     this.nashNumbers = new NashvilleNumbers();
+    this.bs = bassService;
   }
 
  

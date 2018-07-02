@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FretBoard } from '../FretBoard';
-import { BassService, ChordService } from '../bass.service';
+import { BassService } from '../Services/bass.service';
 import { AppComponent } from '../app.component';
 import { Chord } from '../Chord';
 import { ChordBlock } from '../ChordBlock';
+import { ChordService } from '../Services/chord.service';
 @Component({
   selector: 'app-chords',
   templateUrl: './chords.component.html',
@@ -13,14 +14,17 @@ export class ChordsComponent implements OnInit {
 
   @Input() p: AppComponent;
   @Input() bassStrings: number;
+  @Input() bs: BassService;
   fretboard: FretBoard;
   strings: any;
 
   closedVoice: Chord[];
   openVoice: Chord[];
+  bassService: BassService;
 
 
   constructor(bassService: BassService, chordService: ChordService) {
+    this.bassService = bassService;
     this.strings = bassService.getStrings();
     this.closedVoice = [];
     this.openVoice = [];

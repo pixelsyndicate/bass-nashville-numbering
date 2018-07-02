@@ -3,6 +3,8 @@ import { AppComponent } from '../app.component';
 import { FretBoard } from '../FretBoard';
 
 import { Chord } from '../Chord';
+import { BassString } from '../BassString';
+import { BassService } from '../Services/bass.service';
 
 @Component({
   selector: 'app-chord',
@@ -11,10 +13,17 @@ import { Chord } from '../Chord';
 })
 export class ChordComponent {
 
+    @Input() voice: Chord[];
     @Input() chord: Chord;
     @Input() p: AppComponent;
     @Input() fretboard: FretBoard;
-    
+    @Input() strings: BassString[];
  
-    constructor() { }
+    
+    @Input() bs: BassService;
+
+     constructor() {
+      
+     }
+    
 }

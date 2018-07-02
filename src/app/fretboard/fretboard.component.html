@@ -11,11 +11,8 @@
 <hr />
 <div class="col-md-6" [ngClass]="{'d-none': nashNumbers.getNote(1)==''}">
 
-    <button class="btn btn-sm btn-outline-danger form-control" (click)="clearRoot()">* Clear Selection *</button>
-  </div>
-
-
-
+  <button class="btn btn-sm btn-outline-danger form-control" (click)="clearRoot()">* Clear Selection *</button>
+</div>
 
 <div class="row">
 
@@ -31,10 +28,8 @@
 
 
       <tbody>
-        <tr *ngFor="let str of p.filterStrings(fretboard.strings, bassStrings).reverse()">
-          <td *ngFor="let note of str.notes; let i = index" 
-          style="border-right-style: ridge; border-right-color:darkgoldenrod;" 
-          [ngStyle]="{'border-right-width':i==0 ? '8px': '3px'}">
+        <tr *ngFor="let str of bs.filterStrings(fretboard.strings, bassStrings).reverse()">
+          <td *ngFor="let note of str.notes; let i = index" style="border-right-style: ridge; border-right-color:darkgoldenrod;" [ngStyle]="{'border-right-width':i==0 ? '8px': '3px'}">
             <app-fretboard-fret [s]="str" [note]="note" [fbc]="this" [i]="index"></app-fretboard-fret>
           </td>
         </tr>

@@ -1,8 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { BassService } from './bass.service';
+import { BassService } from '../Services/bass.service';
 
-describe('StringsService', () => {
+describe('BassService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [BassService]

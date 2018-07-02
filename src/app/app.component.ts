@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { BassString } from './BassString';
+import { BassService } from './Services/bass.service';
 
 @Component({
   selector: 'app-root',
@@ -6,19 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  bs: BassService;
 
-
- bassStrings: number = 5;
-
- showPage:string;
-
-  filterStrings(stringObjs: any[], strType: number) {
-    let toReturn = [];
-    stringObjs.forEach(e => {
-      if (e.stringType as number <= strType)
-        toReturn.push(e);
-    });
-    return toReturn;
+  constructor(bassService: BassService) {
+    this.bs = bassService;
   }
-  
+  bassStrings: number = 5;
+
+  showPage: string;
+
+  filterStrings(stringObjs: BassString[], strType: number): BassString[] {
+    return this.bs.filterStrings(stringObjs, strType);
+  }
+
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Scale } from '../Scale';
-import { ScaleService } from '../bass.service';
+import { ScaleService } from '../Services/scale.service';
 
 @Component({
   selector: 'app-bass-scales',

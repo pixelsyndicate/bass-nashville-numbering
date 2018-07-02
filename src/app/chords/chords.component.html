@@ -57,7 +57,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let str of p.filterStrings(fretboard.strings, 4).reverse()">
+                          <tr *ngFor="let str of bs.filterStrings(fretboard.strings, 4).reverse()">
                   
                             <td *ngFor="let note of str.notes; index as n; first as isFirst" style="border-right-style: ridge; border-right-color:darkgoldenrod;" [ngStyle]="{'border-right-width':n==0 ? '8px': '3px'}">
                                         
@@ -111,6 +111,7 @@
         
     
           <div class="col" *ngFor="let voice of closedVoice">
+              <!-- <app-chord voice="voice" p="p" fretboard="fretboard" bs="bs"></app-chord> -->
               <p>
                   <strong>
                     <i>{{voice.name}}</i>
@@ -126,7 +127,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let str of p.filterStrings(fretboard.strings, 4).reverse()">
+                          <tr *ngFor="let str of bs.filterStrings(fretboard.strings, 4).reverse()">
                   
                             <td *ngFor="let note of str.notes; index as n; first as isFirst" style="border-right-style: ridge; border-right-color:darkgoldenrod;" [ngStyle]="{'border-right-width':n==0 ? '8px': '3px'}">
                                         
