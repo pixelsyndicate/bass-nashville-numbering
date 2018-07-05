@@ -34,7 +34,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" id="cguide-tab" data-toggle="tab" href="#cguide" role="tab" aria-controls="cguide" aria-selected="false">
-          <i class="fa fa-question"></i> How To Read the Colors and Numbers</a>
+          <i class="fa fa-question"></i> How To Read These</a>
       </li>
 
     </ul>
@@ -48,264 +48,142 @@
             <i>Beyond A Single Octive</i>
           </p>
         </div>
-
-        <div class="col" *ngFor="let voice of openVoice">
-          <p>
-            <strong>
-              <i>{{voice.name}}</i>
-            </strong>
-          </p>
-          <div class="table-responsive">
-            <table class="table table-dark table-sm text-center">
-              <thead>
-                <tr>
-                  <th scope="col" *ngFor="let m of fretboard.markers; let i=index">
-                    <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let str of bs.filterStrings(fretboard.strings, 4).reverse()">
-
-                  <td *ngFor="let note of str.notes; index as n; first as isFirst" style="border-right-style: ridge; border-right-color:darkgoldenrod;"
-                    [ngStyle]="{'border-right-width':n==0 ? '8px': '3px'}">
-
-                    <ng-container *ngIf="isFirst; then openStringTemplate; else notOpenStrTemplate"> </ng-container>
-                    <ng-template #openStringTemplate>
-                      <button type="button" style="min-width: 50px;" class="btn btn-dark">
-                        {{str.open}}
-                      </button>
-                    </ng-template>
-                    <ng-template #notOpenStrTemplate>
-
-                      <ng-container *ngIf="isChordNote(voice, str.open, n); then isChordNoteTemplate; else notChordNoteTemplate"></ng-container>
-                      <ng-template #isChordNoteTemplate>
-                        <input type="hidden" ng-model="let cb = getChordBlock(voice, str.open, n)">
-                        <button type="button" style="min-width: 50px;" class="btn " [ngClass]="getChordBlockClass(getChordBlock(voice, str.open, n))">
-                          <span>
-                            {{getChordBlock(voice, str.open, n).note}}
-                            <span class="badge badge-pill badge-dark">{{getChordBlock(voice, str.open, n).finger}}</span>
-                          </span>
-                        </button>
-                      </ng-template>
-                      <ng-template #notChordNoteTemplate>
-
-                        <button type="button" style="min-width: 50px;" class="btn btn-dark">
-                          &nbsp;
-                        </button>
-                      </ng-template>
-                    </ng-template>
-
-                  </td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th scope="col" *ngFor="let m of fretboard.markers; let i=index">
-                    <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
-                  </th>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </div>
-
+        <app-chord-voices [inputVoices]="openVoice"></app-chord-voices>
       </div>
       <div class="tab-pane" id="closed" role="tabpanel" aria-labelledby="closed-tab" style="border: 1px solid #dee2e6;  background-color: #fff; border-top:0px;">
-          <div class="col">
-        <p>
-          <strong>Closed Voiced Chords </strong> -
-          <i>Within A Single Octive</i>
-        </p>
-        <p>
-          <i>* If you don't see any colored notes on the fretboards below, scroll farther up the neck. These C chords start
-            after the 12th fret.</i>
-        </p>
-</div>  
-
-        <div class="col" *ngFor="let voice of closedVoice">
-          <!-- <app-chord voice="voice" p="p" fretboard="fretboard" bs="bs"></app-chord> -->
+        <div class="col">
           <p>
-            <strong>
-              <i>{{voice.name}}</i>
-            </strong>
+            <strong>Closed Voiced Chords </strong> -
+            <i>Within A Single Octive</i>
           </p>
-          <div class="table-responsive">
-            <table class="table table-dark table-sm text-center">
-              <thead>
-                <tr>
-                  <th scope="col" *ngFor="let m of fretboard.markers; let i=index">
-                    <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let str of bs.filterStrings(fretboard.strings, 4).reverse()">
-
-                  <td *ngFor="let note of str.notes; index as n; first as isFirst" style="border-right-style: ridge; border-right-color:darkgoldenrod;"
-                    [ngStyle]="{'border-right-width':n==0 ? '8px': '3px'}">
-
-                    <ng-container *ngIf="isFirst; then openStringTemplate; else notOpenStrTemplate"> </ng-container>
-                    <ng-template #openStringTemplate>
-                      <button type="button" style="min-width: 50px;" class="btn btn-dark">
-                        {{str.open}}
-                      </button>
-                    </ng-template>
-                    <ng-template #notOpenStrTemplate>
-
-                      <ng-container *ngIf="isChordNote(voice, str.open, n); then isChordNoteTemplate; else notChordNoteTemplate"></ng-container>
-                      <ng-template #isChordNoteTemplate>
-                        <input type="hidden" ng-model="let cb = getChordBlock(voice, str.open, n)">
-                        <button type="button" style="min-width: 50px;" class="btn " [ngClass]="getChordBlockClass(getChordBlock(voice, str.open, n))">
-                          <span>
-                            {{getChordBlock(voice, str.open, n).note}}
-                            <span class="badge badge-pill badge-dark">{{getChordBlock(voice, str.open, n).finger}}</span>
-                          </span>
-                        </button>
-                      </ng-template>
-                      <ng-template #notChordNoteTemplate>
-
-                        <button type="button" style="min-width: 50px;" class="btn btn-dark">
-                          &nbsp;
-                        </button>
-                      </ng-template>
-                    </ng-template>
-
-                  </td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th scope="col" *ngFor="let m of fretboard.markers; let i=index">
-                    <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
-                  </th>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
+          <p>
+            <i>* If you don't see any colored notes on the fretboards below, scroll farther up the neck. These C chords start
+              after the 12th fret.</i>
+          </p>
         </div>
+        <app-chord-voices [inputVoices]="closedVoice"></app-chord-voices>
       </div>
 
       <div class="tab-pane" id="cguide" role="tabpanel" aria-labelledby="cguide-tab" style="border: 1px solid #dee2e6;  background-color: #fff; border-top:0px;">
-          <div class="col">
-              <h5>Color Legend</h5>
-              
-        <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-          <div class="bg-dark mr-md-3 pt-2 px-2 pt-md-2 px-md-5 text-center text-white overflow-hidden">
-            <div class="my-1 py-1">
-              <h4 class="display-6">White: 1st Finger</h4>
-              <button class='btn btn-light' type="button">&nbsp; &nbsp;
-                <span class="badge badge-pill badge-dark">1</span>
-              </button>
-            </div>
-          </div>
+        <div class="col">
+          <h5>Color Legend</h5>
 
-          <div class="bg-dark mr-md-3 pt-2 px-2 pt-md-2 px-md-5 text-center text-white overflow-hidden">
-            <div class="my-1 py-1">
-              <h4 class="display-5">BLUE: 2nd Finger</h4>
-              <button class='btn btn-info' type="button">&nbsp; &nbsp;
-                <span class="badge badge-pill badge-dark">2</span>
-              </button>
+          <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+            <div class="bg-dark mr-md-3 pt-2 px-2 pt-md-2 px-md-5 text-center text-white overflow-hidden">
+              <div class="my-1 py-1">
+                <h4 class="display-6">White: 1st Finger</h4>
+                <button class='btn btn-light' type="button">&nbsp; &nbsp;
+                  <span class="badge badge-pill badge-dark">1</span>
+                </button>
+              </div>
             </div>
 
+            <div class="bg-dark mr-md-3 pt-2 px-2 pt-md-2 px-md-5 text-center text-white overflow-hidden">
+              <div class="my-1 py-1">
+                <h4 class="display-5">BLUE: 2nd Finger</h4>
+                <button class='btn btn-info' type="button">&nbsp; &nbsp;
+                  <span class="badge badge-pill badge-dark">2</span>
+                </button>
+              </div>
 
-          </div>
 
-          <div class="bg-dark mr-md-3 pt-2 px-2 pt-md-2 px-md-5 text-center text-white overflow-hidden">
-            <div class="my-1 py-1">
-              <h4 class="display-5">GREEN: 3rd Finger</h4>
-              <button class='btn btn-success' type="button">&nbsp; &nbsp;
-                <span class="badge badge-pill badge-dark">3</span>
-              </button>
             </div>
 
-          </div>
+            <div class="bg-dark mr-md-3 pt-2 px-2 pt-md-2 px-md-5 text-center text-white overflow-hidden">
+              <div class="my-1 py-1">
+                <h4 class="display-5">GREEN: 3rd Finger</h4>
+                <button class='btn btn-success' type="button">&nbsp; &nbsp;
+                  <span class="badge badge-pill badge-dark">3</span>
+                </button>
+              </div>
 
-          <div class="bg-dark mr-md-3 pt-2 px-2 pt-md-2 px-md-5 text-center text-white overflow-hidden">
-            <div class="my-1 py-1">
-              <h4 class="display-5">YELLOW: 4th Finger</h4>
-              <button class='btn btn-warning' type="button">&nbsp; &nbsp;
-                <span class="badge badge-pill badge-dark">4</span>
-              </button>
             </div>
 
+            <div class="bg-dark mr-md-3 pt-2 px-2 pt-md-2 px-md-5 text-center text-white overflow-hidden">
+              <div class="my-1 py-1">
+                <h4 class="display-5">YELLOW: 4th Finger</h4>
+                <button class='btn btn-warning' type="button">&nbsp; &nbsp;
+                  <span class="badge badge-pill badge-dark">4</span>
+                </button>
+              </div>
+
+            </div>
+
+
           </div>
 
+          <h5>Example</h5>
+          This chord uses fingers 1, 2 and 4 to land on the 3rd, 1st (root) and 7th notes respectively (this is the C Major 7th Closed
+          Voice chord).
+          <table class="table table-responsive-sm table-dark table-sm text-center " id="legend" style="max-width: 300px; font-family: 'Times New Roman', Times, serif;">
+            <tbody>
+              <tr>
+
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
+                </td>
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
+                </td>
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
+                </td>
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-warning" style="min-width: 50px;" type="button">VII &nbsp;
+                    <span class="badge badge-dark">4</span>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
+                </td>
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-light" style="min-width: 50px;" type="button">III
+                    <span class="badge badge-dark" ng-reflect-ng-class="badge badge-light">1</span>
+                  </button>
+                </td>
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
+                </td>
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
+                </td>
+              </tr>
+              <tr>
+
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
+                </td>
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
+                </td>
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-info" style="min-width: 50px;" type="button">R &nbsp;
+                    <span class="badge badge-dark">2</span>
+                  </button>
+                </td>
+                <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
+                  <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <h5>The Notes</h5>
+          <p>
+            <strong>'R'</strong> ... This indicates the Root note (will be 'C' if the chord is C (major|minor|dominant))</p>
+          <p>
+            <strong>Roman Numerals</strong> ... These indicate the progression number (III is the 3rd, IV the 4th, V the 5th, etc)..
+          </p>
+          <p>
+            <strong>
+              <i>Flattened</i> Roman Numerals</strong> ... Those which are flattened have a 'b' appending them (e.g. bIII is
+            a flattened 3rd)</p>
 
         </div>
-        
-        <h5>Example</h5>
-        This chord uses fingers 1, 2 and 4 to land on the 3rd, 1st (root) and 7th notes respectively (this is the C Major 7th Closed
-        Voice chord).
-        <table class="table table-responsive-sm table-dark table-sm text-center " id="legend" style="max-width: 300px; font-family: 'Times New Roman', Times, serif;">
-          <tbody>
-            <tr>
-
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
-              </td>
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
-              </td>
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
-              </td>
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-warning" style="min-width: 50px;" type="button">VII &nbsp;
-                  <span class="badge badge-dark">4</span>
-                </button>
-              </td>
-            </tr>
-            <tr>
-
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
-              </td>
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-light" style="min-width: 50px;" type="button">III
-                  <span class="badge badge-dark" ng-reflect-ng-class="badge badge-light">1</span>
-                </button>
-              </td>
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
-              </td>
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
-              </td>
-            </tr>
-            <tr>
-
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
-              </td>
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
-              </td>
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-info" style="min-width: 50px;" type="button">R &nbsp;
-                  <span class="badge badge-dark">2</span>
-                </button>
-              </td>
-              <td style="border-right-width: 1px; border-right-style: solid; border-right-color: goldenrod;">
-                <button class="btn btn-dark" style="min-width: 50px;" type="button">&nbsp;</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-
-        <h5>The Notes</h5>
-        <p>
-          <strong>'R'</strong> ... This indicates the Root note (will be 'C' if the chord is C (major|minor|dominant))</p>
-        <p>
-          <strong>Roman Numerals</strong> ... These indicate the progression number (III is the 3rd, IV the 4th, V the 5th, etc)..
-          </p>
-        <p>
-          <strong>
-            <i>Flattened</i> Roman Numerals</strong> ... Those which are flattened have a 'b' appending them (e.g. bIII is a
-          flattened 3rd)</p>
-
-</div>
       </div>
 
     </div>

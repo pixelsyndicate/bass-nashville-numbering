@@ -2,6 +2,7 @@
 import { Injectable } from "@angular/core";
 
 import { Chord } from "../Models/Chord";
+import { ChordBlock } from "../Models/ChordBlock";
 
 @Injectable({
   providedIn: "root"
@@ -100,5 +101,31 @@ export class ChordService {
   getClosedChords(): Chord[] {
 
     return this.closedVoices;
+  }
+
+  isChordNote(chord: Chord, str: string, note: number): any {
+    let theBlock = this.getChordBlock(chord, str, note);
+    return theBlock != null;
+  }
+
+  getChordBlock(chord: Chord, str: string, note: number): ChordBlock {
+    let theBlock = chord.blocks.find(x => x.bassString == str && x.fret == note);
+    return theBlock;
+  }
+
+  getChordBlockClass(block: ChordBlock) {
+
+    switch (block.finger) {
+      case 1:
+        return 'btn-light';
+      case 2:
+        return 'btn-info';
+      case 3:
+        return 'btn-success';
+      case 4:
+        return 'btn-warning';
+      default:
+        return '';
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { BassService } from '../Services/bass.service';
+import { BassService } from './bass.service';
 
 describe('BassService', () => {
   beforeEach(() => {

@@ -1,0 +1,55 @@
+<div class="col" *ngFor="let voice of inputVoices">
+    <p>
+      <strong>
+        <i>{{voice.name}}</i>
+      </strong>
+    </p>
+    <div class="table-responsive">
+      <table class="table table-dark table-sm text-center">
+        <thead>
+          <tr>
+            <th scope="col" *ngFor="let m of bs.fretBoard.markers; let i=index">
+              <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let str of bs.filterStrings(4).reverse()">
+            <td *ngFor="let note of str.notes; index as n; first as isFirst" 
+            style="border-right-style: ridge; border-right-color:darkgoldenrod;"
+              [ngStyle]="{'border-right-width':n==0 ? '8px': '3px'}">
+              <ng-container *ngIf="isFirst; then openStringTemplate; else notOpenStrTemplate"> </ng-container>
+              <ng-template #openStringTemplate>
+                <button type="button" style="min-width: 50px;" class="btn btn-dark" disabled>{{str.open}}</button>
+              </ng-template>
+              <ng-template #notOpenStrTemplate>
+                <ng-container *ngIf="cs.isChordNote(voice, str.open, n); then isChordNoteTemplate; else notChordNoteTemplate"></ng-container>
+                <ng-template #isChordNoteTemplate>
+                  <button type="button" style="min-width: 50px;" class="btn " [ngClass]="cs.getChordBlockClass(cs.getChordBlock(voice, str.open, n))">
+                    <span>
+                      {{cs.getChordBlock(voice, str.open, n).note}}
+                      <span class="badge badge-pill badge-dark">
+                          {{cs.getChordBlock(voice, str.open, n).finger}}</span>
+                    </span>
+                  </button>
+                </ng-template>
+                <ng-template #notChordNoteTemplate>
+
+                  <button type="button" style="min-width: 50px;" class="btn btn-dark" disabled>
+                    &nbsp;
+                  </button>
+                </ng-template>
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="col" *ngFor="let m of bs.fretBoard.markers; let i=index">
+              <app-fretboard-marker [m]="m" [i]="i"></app-fretboard-marker>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>

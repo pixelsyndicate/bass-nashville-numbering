@@ -1,21 +1,20 @@
-
 <div class="row">
-    <div class="col">
+  <div class="col">
 
-        <nav class="nav nav-pills  text-center">
-          <a class="nav-link" routerLinkActive="active" routerLink="/scales">Scales</a>
-          <a class="nav-link" routerLink="/nashville" routerLinkActive="active">Nashville Numbers</a>
-          <a class="nav-link"  routerLinkActive="active" routerLink="/chords">Chords</a>
-          
-        </nav>
-        <br />
-      
-      </div>
+    <nav class="nav nav-pills  text-center">
+      <a class="nav-link" routerLinkActive="active" routerLink="/scales">Scales</a>
+      <a class="nav-link" routerLink="/nashville" routerLinkActive="active">Nashville Numbers</a>
+      <a class="nav-link"  routerLinkActive="active" routerLink="/chords">Chords</a>
+
+    </nav>
+    <br />
+
+  </div>
 
 </div>
 
-        <!--   <app-fretboard [bassStrings]="bassStrings"></app-fretboard> -->
-        <!-- <app-bass-scales [bassStrings]="bassStrings"></app-bass-scales> -->
-        <!-- <app-chords [bassStrings]="bassStrings" [bs]="bs"></app-chords> -->
-        <!-- by importing AppRoutingModule (which exported RouterModule), this app.component can now use  <Router-Outlet> tag-->
-            <router-outlet></router-outlet>
+<!--   <app-fretboard [bassStrings]="bassStrings"></app-fretboard> -->
+<!-- <app-bass-scales [bassStrings]="bassStrings"></app-bass-scales> -->
+<!-- <app-chords [bassStrings]="bassStrings" [bs]="bs"></app-chords> -->
+<!-- by importing AppRoutingModule (which exported RouterModule), this app.component can now use  <Router-Outlet> tag-->
+<router-outlet></router-outlet>

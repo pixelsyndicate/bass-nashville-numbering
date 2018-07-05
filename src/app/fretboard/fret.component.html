@@ -1,0 +1,9 @@
+<button type="button" style="min-width: 50px;" class="btn " 
+(click)="bs.selectRoot($event,s,note);" 
+[ngClass]="bs.getNashNumberClass(note)">
+    {{note}}
+    <span [ngClass]="bs.getNashNumberBadgeClass(note)" 
+    [hidden]="!bs.isNashNumber(note)">
+        {{bs.nashNumbers.getNumber(note)}}
+    </span>
+</button>

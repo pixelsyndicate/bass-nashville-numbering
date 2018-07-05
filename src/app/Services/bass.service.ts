@@ -1,6 +1,7 @@
 import { Injectable, Input } from '@angular/core';
 import { BassString } from '../Models/BassString';
 import { NashvilleNumbers } from '../Models/NashvilleNumbers';
+import { FretBoard } from '../Models/FretBoard';
 
 @Injectable({
   providedIn: 'root'
@@ -13,27 +14,43 @@ export class BassService {
   private dstring: BassString;
   private gstring: BassString;
   private cstring: BassString;
-  private bassStrings: Array<BassString>;
-  stringCount: number;
+
+  userStringCount: number;
 
 
   // migrated from fretboard.component.ts
   // exposed model for the Nashville Numbers based on the user's selection
   nashNumbers: NashvilleNumbers;
-// migrated from fretboard.component.ts
+  fretBoard: FretBoard;
+
+  // migrated from fretboard.component.ts
   selectRoot(e: Event, str: any, note: any): void {
     this.nashNumbers.set(str, note);
   }
-// migrated from fretboard.component.ts
+  // migrated from fretboard.component.ts
   clearRoot(e: Event) {
     this.nashNumbers.unset();
   }
 
+  // only return those BassString objects that have stringType = strType
+  filterStrings(strType: number): BassString[] {
+
+    let toReturn = [];
+    this.fretBoard.strings.forEach(e => {
+      if (e.stringType as number <= strType)
+        toReturn.push(e);
+    });
+    return toReturn;
+  }
 
 
 
   constructor() {
-    this.bassStrings = [];// = new Array<BassString>();
+
+    this.fretBoard = new FretBoard();
+    this.nashNumbers = new NashvilleNumbers();
+
+
     this.bstring = {
       open: 'B',
       index: 5, stringType: 5,
@@ -64,7 +81,9 @@ export class BassService {
       index: 0, stringType: 6,
       notes: ['C', "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C",]
     };
-    this.stringCount = 5;
+
+    this.fretBoard.addStrings(this.getStrings())
+    
   }
 
   isNashNumber(n: string): boolean {
@@ -100,9 +119,7 @@ export class BassService {
 
   getStrings(): Array<BassString> {
 
-    if (this.bassStrings.length < 1)
-      this.bassStrings.push(this.bstring, this.estring, this.astring, this.dstring, this.gstring, this.cstring);
-    return this.bassStrings;
+    return [this.bstring, this.estring, this.astring, this.dstring, this.gstring, this.cstring];
   }
 
   private getNotes(): string[] {
@@ -124,17 +141,7 @@ export class BassService {
     return toReturn;
   }
 
-  // only return those BassString objects that have stringType = strType
-  filterStrings(stringObjs: BassString[], strType: number): BassString[] {
-    if (this.bassStrings != stringObjs)
-      this.bassStrings = stringObjs;
-    let toReturn = [];
-    this.bassStrings.forEach(e => {
-      if (e.stringType as number <= strType)
-        toReturn.push(e);
-    });
-    return toReturn;
-  }
+
 
   getNashNumberBadgeClass(n: string): string {
     let toReturn = "hidden";
@@ -180,7 +187,7 @@ export class BassService {
 
     return toReturn;
   }
-  
+
   isNashRootSelected(): boolean {
     return !this.nashNumbers.getNote(1) || this.nashNumbers.getNote(1) === '';
   }
