@@ -1,20 +1,30 @@
 import { Component, Input } from '@angular/core';
 
-import { BassString } from '../BassString';
+import { BassString } from '../Models/BassString';
 import { FretboardComponent } from './fretboard.component';
+import { BassService } from '../Services/bass.service';
 
-@Component({selector:'app-fretboard-fret',template:`
-<button type="button" style="min-width: 50px;" class="btn " (click)="fbc.selectRoot($event,s,note);" [ngClass]="fbc.getNashNumberClass(note)">
+@Component({
+  selector: 'app-fretboard-fret',
+  template: `<button type="button" style="min-width: 50px;" class="btn "
+(click)="bs.selectRoot($event,s,note);"
+[ngClass]="bs.getNashNumberClass(note)">
 {{note}}
-<span [ngClass]="fbc.getNashNumberBadgeClass(note)" [hidden]="!fbc.isNashNumber(note)">{{fbc.nashNumbers.getNumber(note)}}</span>
-</button>`})
-export class FretComponent  {
+<span [ngClass]="bs.getNashNumberBadgeClass(note)"
+[hidden]="!bs.isNashNumber(note)">
+{{bs.nashNumbers.getNumber(note)}}
+</span></button>`
+})
+export class FretComponent {
 
-  @Input() i:number;
-    @Input() s:BassString;
-    @Input() note:string;
-    @Input() fbc:FretboardComponent;
+  @Input() i: number;
+  @Input() s: BassString;
+  @Input() note: string;
+  @Input() fbc: FretboardComponent;
+  bs: BassService;
 
-  constructor(){}
+  constructor(private bassService: BassService) {
+    this.bs = bassService;
+   }
 
 }

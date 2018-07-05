@@ -1,50 +1,21 @@
-<div class="container">
 
-  <div class="col-sm-12">
-      <nav class="nav nav-pills flex-column flex-sm-row">
-          <a class="flex-sm-fill text-sm-center nav-link" href="#" [ngClass]="{'active': showPage == 'scales'}" 
-          (click)="showPage = 'scales'">Scales</a>
+<div class="row">
+    <div class="col">
 
-          <a class="flex-sm-fill text-sm-center nav-link" href="#" [ngClass]="{'active': showPage == 'fretboard'}" 
-          (click)="showPage = 'fretboard'">Nashville Numbering</a>
+        <nav class="nav nav-pills  text-center">
+          <a class="nav-link" routerLinkActive="active" routerLink="/scales">Scales</a>
+          <a class="nav-link" routerLink="/nashville" routerLinkActive="active">Nashville Numbers</a>
+          <a class="nav-link"  routerLinkActive="active" routerLink="/chords">Chords</a>
+          
+        </nav>
+        <br />
+      
+      </div>
 
-          <a class="flex-sm-fill text-sm-center nav-link" href="#" [ngClass]="{'active': showPage == 'chords'}" 
-          (click)="showPage = 'chords'">Chords</a>
-       
-       
-      <form class="form-inline ml-sm-2">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="stringCnt-addon1"># of strings</span>
-          </div>
-          <select class="form-control  mr-sm-2" id="stringCount" required [(ngModel)]="bassStrings" name="stringCount" aria-label="stringCount"
-            aria-describedby="stringCnt-addon1">
-            <option [value]="4">{{4}}</option>
-            <option [value]="5" ng-selected="select">{{5}}</option>
-            <option [value]="6">{{6}}</option>
-          </select>
-        </div>
-      </form>
-    </nav>
-  </div>
-  <div class="col-sm-12">
-    <p> <strong> TIP:</strong>
-      Select the number of strings on your bass.</p>     
-    </div>
-  <div class="col-sm-12" id="fretboard" [ngClass]="{'d-none': showPage!='fretboard'}">
-
-    <app-fretboard [bassStrings]="bassStrings"  [p]="this"></app-fretboard>
-
-  </div>
-  <div class="col-sm-12" id="scales" [ngClass]="{'d-none': showPage!='scales'}">
-
-    <app-bass-scales [bassStrings]="bassStrings" ></app-bass-scales>
-
-  </div>
-
-  <div class="col-sm-12" id="chords" [ngClass]="{'d-none': showPage!='chords'}">
-
-      <app-chords [bassStrings]="bassStrings" [p]="this" [bs]="bs"></app-chords>
-  
-    </div>
 </div>
+
+        <!--   <app-fretboard [bassStrings]="bassStrings"></app-fretboard> -->
+        <!-- <app-bass-scales [bassStrings]="bassStrings"></app-bass-scales> -->
+        <!-- <app-chords [bassStrings]="bassStrings" [bs]="bs"></app-chords> -->
+        <!-- by importing AppRoutingModule (which exported RouterModule), this app.component can now use  <Router-Outlet> tag-->
+            <router-outlet></router-outlet>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import { FretMarker } from '../Models/FretMarker';
 @Component({
     selector: 'app-fretboard-marker',
     template: `
@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
         <i class="fas fa-circle" style="font-size: .8em;" *ngIf="i > 0 &&  m.marker=='..'"></i>
         <i class="fas fa-circle" style="font-size: .8em;" *ngIf="i > 0 &&  m.marker=='..'"></i>`})
 export class MarkersComponent {
-    @Input() m: any;
+    @Input() m: FretMarker;
     @Input() i: number;
 
     constructor() { }

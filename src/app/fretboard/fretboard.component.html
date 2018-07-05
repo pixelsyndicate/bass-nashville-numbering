@@ -1,20 +1,96 @@
-<div class="col">
-  <strong>How to use the Nashville Numbers:</strong>
-  <br /> Click the note that is the root for the song (what `
-  <em>key</em>` is the song in?)
+<div class="col-12">
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <!-- <div class="card-header" id="headingOne"> -->
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          How to use the Nashville Numbers
+        </button>
+      </h5>
+      <!-- </div> -->
+
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>First, choose from the '# of strings' picker the number of strings you have on your bass. This will adjust the
+            virtual fretboard to represent the common
+            <i>B</i>EADG
+            <i>C</i> tuning pattern.</p>
+          <p>Then pick a note on the fretboard that will be your 'Root' note for the Major scale (for instance: if a song is
+            in the key-of-B Major, i'd click on a 'B' note). </p>
+          <p>The result of selecting a Root note will be that the fretboard will be color coded and numbered to identify which
+            Nashville Number is associated with each other note.</p>
+          <p>You will also be provided all seven of your notes in the form of a legend above the fretboard.</p>
+          <p>To change to another Major scale just click another note. You may also just reset the fretboard by clicking the
+            button presented at the time of your choosing a root note.</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <!-- <div class="card-header" id="headingTwo"> -->
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+          aria-controls="collapseTwo">
+          View The Color Legend
+        </button>
+      </h5>
+      <!-- </div> -->
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+          <app-nash-legend></app-nash-legend>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Collapsible Group Item #3
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div> -->
+  </div>
+
 </div>
-
-
-
-<app-nash-your-numbers [nashNumbers]="nashNumbers" [p]="this"></app-nash-your-numbers>
-
 <hr />
-<div class="col-md-6" [ngClass]="{'d-none': nashNumbers.getNote(1)==''}">
-
-  <button class="btn btn-sm btn-outline-danger form-control" (click)="clearRoot()">* Clear Selection *</button>
+<div class="row">
+  <div class="col-6">
+    <form class="form-inline ml-sm-2">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="stringCnt-addon1"># of strings</span>
+        </div>
+        <select class="form-control mr-sm-2" id="stringCount" required [(ngModel)]="bs.stringCount" name="stringCount" aria-label="stringCount"
+          aria-describedby="stringCnt-addon1">
+          <option [value]="4">{{4}}</option>
+          <option [value]="5" ng-selected="select">{{5}}</option>
+          <option [value]="6">{{6}}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="col-6" [ngClass]="{'d-none': bs.isNashRootSelected() }">
+    <button class="btn btn-sm btn-outline-danger form-control" (click)="bs.clearRoot()">* Clear Selection *</button>
+  </div>
 </div>
+<div class="row">
+  <div class="card" [ngClass]="{'d-none': bs.isNashRootSelected() }">
+    <div class="card-body">
+      <app-nash-your-numbers></app-nash-your-numbers>
+    </div>
+  </div>
+</div>
+<hr />
 
 <div class="row">
+
+
+<div class="col-12">
 
   <div class="table-responsive">
     <table class="table table-dark table-sm text-center">
@@ -28,12 +104,13 @@
 
 
       <tbody>
-        <tr *ngFor="let str of bs.filterStrings(fretboard.strings, bassStrings).reverse()">
+        <tr *ngFor="let str of bs.filterStrings(fretboard.strings, bs.stringCount).reverse()">
           <td *ngFor="let note of str.notes; let i = index" style="border-right-style: ridge; border-right-color:darkgoldenrod;" [ngStyle]="{'border-right-width':i==0 ? '8px': '3px'}">
             <app-fretboard-fret [s]="str" [note]="note" [fbc]="this" [i]="index"></app-fretboard-fret>
           </td>
         </tr>
       </tbody>
+
       <tfoot>
         <tr>
           <th scope="col" *ngFor="let m of fretboard.markers; let i=index">
@@ -44,5 +121,5 @@
     </table>
   </div>
 </div>
-
-<app-nash-legend [p]="this"></app-nash-legend>
+<hr />
+</div>

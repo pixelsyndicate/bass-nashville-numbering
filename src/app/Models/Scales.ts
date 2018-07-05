@@ -29,7 +29,6 @@ export class MajorPentatonicScale extends Scale {
     }
 }
 
-
 export class MinorScale extends Scale {
     constructor() {
         super("Minor");

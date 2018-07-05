@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Scale } from '../Scale';
+import { Scale } from '../Models/Scale';
 import { ScaleService } from '../Services/scale.service';
 
 @Component({
@@ -9,7 +9,6 @@ import { ScaleService } from '../Services/scale.service';
 })
 export class BassScalesComponent implements OnInit {
 
-  @Input() bassStrings: number;
   title = 'Five Common Scales';
   subTitle = 'The numbers represent which finger you should use, and the red color indicates a starting position (root note)';
   TheScales:Scale[];

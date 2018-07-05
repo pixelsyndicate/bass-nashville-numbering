@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FretBoard } from '../FretBoard';
+import { FretBoard } from '../Models/FretBoard';
 import { BassService } from '../Services/bass.service';
 import { AppComponent } from '../app.component';
-import { Chord } from '../Chord';
-import { ChordBlock } from '../ChordBlock';
+import { Chord } from '../Models/Chord';
+import { ChordBlock } from '../Models/ChordBlock';
 import { ChordService } from '../Services/chord.service';
+import { BassString } from '../Models/BassString';
 @Component({
   selector: 'app-chords',
   templateUrl: './chords.component.html',
@@ -12,20 +13,21 @@ import { ChordService } from '../Services/chord.service';
 })
 export class ChordsComponent implements OnInit {
 
-  @Input() p: AppComponent;
-  @Input() bassStrings: number;
-  @Input() bs: BassService;
+  bs: BassService;
   fretboard: FretBoard;
-  strings: any;
+  initialStrings: Array<BassString>;
 
   closedVoice: Chord[];
   openVoice: Chord[];
-  bassService: BassService;
 
+
+  filterStrings(stringObjs: BassString[], strType: number): BassString[] {
+    return this.bs.filterStrings(stringObjs, strType);
+  }
 
   constructor(bassService: BassService, chordService: ChordService) {
-    this.bassService = bassService;
-    this.strings = bassService.getStrings();
+    this.bs = bassService;
+    this.initialStrings = bassService.getStrings();
     this.closedVoice = [];
     this.openVoice = [];
     this.closedVoice = chordService.getClosedChords();
@@ -36,7 +38,7 @@ export class ChordsComponent implements OnInit {
 
     // instantiate a fretboard
     this.fretboard = new FretBoard();
-    this.fretboard.addStrings(this.strings);
+    this.fretboard.addStrings(this.initialStrings);
 
   }
 
