@@ -1,0 +1,45 @@
+<div class="card">
+
+  <div class="card-body">
+    <h5 class="card-title">Tap Your Tempo</h5>
+    <p class="card-text">Tap the spacebar or the TAP button at the beat you want until the ACCURACY bar is fill. The more consistantly you tap, the more accurate it will be.</p>
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <!-- removed click event for clickService.tap2tempo() replace with clickService.bufferTaps(e) -->
+            <button class="btn btn-lg btn-danger form-control" (click)="clickService.tap2tempo()">
+              <i class="fas fa-drum"></i> Tap </button>
+          </div>
+          <div class="input-group-append">
+            <select class="custom-select form-control  form-control-lg" [(ngModel)]="clickService.msMultiplier">
+              <option value="4">Whole Notes</option>
+              <option value="2">Half Notes</option>
+              <option value="1.5">Dotted Notes</option>
+              <option value="1" selected>Quarter Notes</option>
+              <option value=".667">Triplets</option>
+              <option value=".5">Eighth Notes</option>
+              <option value=".25">Sixteenth Notes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="clickService.tempoEntries.length > 0">
+      <div class="col">
+        <p class="card-text">BUFFER ACCURACY</p>
+        <div class="progress" class="bg-light" style="height: 30px;">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+          [style.width]="clickService.getTapAccuracy() + '%'"
+            attr.aria-valuenow="{{clickService.getTapAccuracy()}}" 
+            aria-valuemin="0" 
+            attr.aria-valuemax="{{clickService.tempoEntriesMax}}">
+            {{clickService.getTapAccuracy()}}%</div>
+        </div>
+        <label>ms(avg): {{clickService.averageMs}}</label>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
