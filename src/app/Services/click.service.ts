@@ -7,6 +7,18 @@ import * as SVG from 'svg.js';
 })
 export class ClickService {
 
+
+  private calculateAverage(difBuf: number[]): number {
+    var sum, avg = 0;
+    // dividing by 0 will return Infinity
+    // arr must contain at least 1 element to use reduce
+    if (difBuf.length) {
+      sum = difBuf.reduce(function (a, b) { return a + b; });
+      avg = sum / difBuf.length;
+    }
+    return avg;
+  }
+
   metro: Metronome;
   currentMeasure: number;
   currentBeat: number;
@@ -36,6 +48,7 @@ export class ClickService {
   averageMs: number = 0;
   msMultiplier: number;
 
+  /* This is used by the HTML accuracy progress-bar  */
   getTapAccuracy(): number {
     return this.tempoEntries.length * (this.tempoEntriesMax);
   }
@@ -51,7 +64,6 @@ export class ClickService {
   }
 
 
-
   tap2tempo() {
     const now = window.performance.now();
     let avgTs: number = this.avgTimespan(now);
@@ -59,13 +71,8 @@ export class ClickService {
     this.metro.tempo = Math.round(this.ms2bpm(avgTs * this.msMultiplier))
   }
 
-  // this should take current unix time and add it to an array of previous, and return the average.
   avgTimespan(t: number): number {
-    // get the total of all numbers so we can average later
     let totalTs: number = 0;
-    // set timer subscription to clear this entry out after buffertimeout 
-   // totalTs = this.tapBufferAction(t);
-     // if has < max entries push into buffer.
      if (this.tempoEntries.length < this.tempoEntriesMax) {
       this.tempoEntries.push(t);
     }
@@ -73,15 +80,11 @@ export class ClickService {
       this.tempoEntries.splice(0, 1);
       this.tempoEntries.push(t);
     }
-
-    // if (this.tempoEntries.length)
-    // totalTs = this.tempoEntries.reduce(function (a, b) { return a + b; });
-
     // only keep the buffer for *n* seconds. then clear it out.
     let subsc = interval(this.tempoEntriesBufferTimeout * 1000)
       .subscribe(() => {
-        this.tempoEntries.splice(0, 1);
-        this.avgDiffBuffer.splice(0, 1);
+        this.tempoEntries.splice(0, 1); // clear out the first
+        this.avgDiffBuffer.splice(0, 1); // clear out the first
         subsc.unsubscribe();
       });
 
@@ -89,22 +92,13 @@ export class ClickService {
     this.tempoEntries.forEach((entry, i, arr) => {
       let val = entry;
       if(arr[i-1]){
-        let prevEntry=arr[i-1];
-        let diffVal = (val - prevEntry);
+        let diffVal = (val - arr[i-1]);
         this.avgDiffBuffer.push(diffVal);
-      }
-   
+      }   
     });
 
-    var sum, avg = 0;
-    // dividing by 0 will return Infinity
-    // arr must contain at least 1 element to use reduce
-    if (this.avgDiffBuffer.length) {
-      sum = this.avgDiffBuffer.reduce(function (a, b) { return a + b; });
-      avg = sum / this.avgDiffBuffer.length;
-    }
-    console.log("The avgDiffBuffer sum is: " + sum + ". The avgDiffBuffer average is: " + avg);
-    return avg;
+    return this.calculateAverage(this.avgDiffBuffer);
+    
   }
 
   tapBufferAction(num: number): number {
@@ -143,12 +137,14 @@ export class ClickService {
 
   startTimer(bpm: number): void {
 
+    if(this.metro.getTimerState() == 'running')
+    return;
+
     this.metro.timerStart();
 
     if (this.currentMeasure === 0) this.currentMeasure = 1;
 
     let bpmInterval = (60 / bpm) * 1000;
-    console.log("setting bpm ticks for every " + bpmInterval + " ms");
     this.ticker = interval(bpmInterval);
     let subsc = this.ticker.subscribe((t) => this.toBeatOrNotToBeat(t as number, subsc as Subscription));
   }
@@ -185,23 +181,24 @@ export class ClickService {
   private playSound() {
 
     this.audioElement.play().then(() => {
-
+      
     }).catch((error) => {
       // An error ocurred or the user agent prevented playback.
-      console.log("Error: " + error);
+      console.log("Error in this.audioElement.play() ... " + error);
     });
   }
 
   private doBeat(t: number): any {
 
-    let animIn = { duration: 250, ease: '<', delay: 100 };
-    let animOut = { duration: 250, ease: '>', delay: 0 };
+    let animIn = { duration: 150, ease: '<', delay: 50 };
+    let animOut = { duration: 150, ease: '>', delay: 50 };
     let redBulb = this.visualCue.select('#fg').first();
+
     redBulb.animate(animIn).attr({ 'fill-opacity': 1 });
-    this.audioElement.play();
-    this.ticks = t + 1;
+    this.playSound();
     redBulb.animate(animOut).attr({ 'fill-opacity': 0.1 });
 
+    this.ticks = t + 1;
     if (++this.currentBeat > this.metro.timesignature[0]) {
       this.resetBeat();
       this.measuresElapsed++;
@@ -209,7 +206,6 @@ export class ClickService {
         this.resetMeasure();
       }
     }
-
   }
 
   private resetBeat(): void {

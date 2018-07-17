@@ -33,4 +33,7 @@ import { RedLightComponent } from './metronome/red-light/red-light.component';
   providers: [ChordService, BassService, ScaleService, ClickService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+
+ }

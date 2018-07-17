@@ -1,125 +1,127 @@
 <p>
-  This demo shows the ability to change BPM dynamically during a click-track.</p>
-<p>
   <strong>Instructions: </strong> Set your starting temp using the slider or number entry field. Set your time signature. Edit your
   rules. Then Start the demo.
 </p>
-
+<!-- tempo (bpm) setter -->
 <div class="row">
-  <div class="col-8">
-    <form>
-      <div class="row">
-        <div class="col">
-          <label for="formControlRange">
-            <strong>TEMPO (B.P.M.)</strong>
-          </label>
+  <div class="col-sm-6 col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Set Your BPM</h5>
+        <h6 class="card-subtitle mb-2 text-muted">'beats per minute' aka. 'tempo'</h6>
+        <input type="range" name="tempo" class="form-control-range" min="15" max="500"  id="formControlRange" [(ngModel)]="metro.tempo">
+        <hr />
+        <div class="row justify-content-md-center">
+          <div class="col col-md-auto">
+            <input type="number" name="tempo2" placeholder="BPM" class="form-control form-control-lg" style="max-width: 6em;"  [(ngModel)]="metro.tempo" min="15"
+              max="500">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-9">
-          <input type="range" name="tempo" class="form-control-range" min="15" max="500" id="formControlRange" 
-          [(ngModel)]="metro.tempo">
-        </div>
-        <div class="col">
-          <input type="number" name="tempo2" placeholder="BPM" class="form-control form-control-sm" 
-          [(ngModel)]="metro.tempo" min="15"
-            max="500">
-        </div>
-      </div>
-      <app-tap-click></app-tap-click>
-
-    </form>
-
-    <hr />
-    <div class="row">
-      <div class="col">
-        <h5>Tempo Change Rules</h5>
-        <button type="button" name="editorModal" class="btn btn-primary float-right" data-toggle="modal"
-          data-target=".bd-example-modal-lg">Edit Rules</button>
-        <p>Below is displayed the time-based rules to enact (if any). Click the 'Edit Rules' button to delete, change or create
-          new rules.</p>
-        <p>An icon on each rule indicates if the rule is yet to be run
-          <i class="fas fa-clock text-warning"></i> or if it's already been enacted
-          <i class="fas fa-check text-success"></i>.</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex justify-content-between align-items-center" 
-          *ngFor="let tempochange of getOrderedTempoChanges()">
-            After {{tempochange.afterMeasure}} measures, change the tempo to {{tempochange.changeTempo}} bpm.
-            <span class="badge badge-dark badge-pill">
-              <i class="fas fa-clock text-warning" *ngIf="!tempochange.done"></i>
-              <i class="fas fa-check text-success" *ngIf="tempochange.done"></i>
-            </span>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
-  <div class="col-4">
-    <div class="card">
-
-      <div class="card-body">
-        <h5 class="card-title">TRY IT</h5>
-        <p class="card-text">You can pause to keep your settings, but clicking STOP will reset the elapsed measures count.</p>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn  btn-success " [ngClass]="{'disabled': metro.timerStarted}" (click)="clickService.startTimer(metro.tempo)">
-            <i class="fas fa-play"></i>
-          </button>
-          <button type="button" class="btn  btn-warning" (click)="clickService.pauseTimer()" [ngClass]="{'disabled': !metro.timerStarted}">
-            <i class="fas fa-pause"></i>
-          </button>
-          <button type="button" class="btn  btn-danger" (click)="clickService.stopTimer()" [ngClass]="{'disabled': !metro.timerStarted}">
-            <i class="fas fa-stop"></i>
-          </button>
-          
-        </div>
-        
-<app-red-light></app-red-light>
-        <div class="row">
-            <div class="col">
-              <Label for="formControlSignature">
-                <strong>Time Signature (beats / measure)</strong>
-              </Label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-    
-              <input type="number" name="signature0" class="form-control form-control-md" min="3" max="8" [(ngModel)]="metro.timesignature[0]">
-            </div>
-            <div class="col-1"> / </div>
-            <div class="col">
-              <input type="number" name="signature1" class="form-control form-control-md" min="3" max="8" [(ngModel)]="metro.timesignature[1]">
-            </div>
-          </div>
-    
-
-
-        <hr />
-        <p class="card-text">
-          <strong>
-            Beat
-            <span class="text-info">{{clickService.currentBeat}}</span>
-          </strong> /
-          <strong>Measure
-            <span class="text-info">{{clickService.currentMeasure}}</span>
-          </strong>
-        </p>
-        <p class="card-text">
-          <strong>Total Esapsed Measures:
-            <span class="text-info">{{clickService.measuresElapsed}}</span>
-          </strong>
-        </p>
-      </div>
-    </div>
+  <div class="col">
+    <app-tap-click></app-tap-click>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <!-- set time signature -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Time Signature</h5>
+        <div class="row justify-content-md-center">
+          <div class="col  col-md-auto">
+              <div class="input-group mb-2 mr-sm-2" style="font-size: 2em; ">
+                  <div class="input-group-prepend">
+                      <input type="number" name="signature0" class="form-control-lg" style="max-width: 3em;"  min="3" max="8"
+                      [(ngModel)]="metro.timesignature[0]">
+                  </div>
+                  <div class="input-group-text"><span >/</span>  </div>
+                  <div class="input-group-append">
+                      <input type="number" name="signature1" class="form-control-lg" style="max-width: 3em;"  min="3" max="8" [(ngModel)]="metro.timesignature[1]">
+                    </div>
+                </div>
+                <p class="card-text">
+                    <strong>
+                      Beat
+                      <span class="text-info">{{clickService.currentBeat}}</span>
+                    </strong> /
+                    <strong>Measure
+                      <span class="text-info">{{clickService.currentMeasure}}</span>
+                    </strong>
+                    <br>
+                    <strong>Elapsed Measures:
+                      <span class="text-info">{{clickService.measuresElapsed}}</span>
+                    </strong>
+                  </p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <form>
+      <!-- try it card  -->
+      <div class="card">
+        <div class="card-body"><div class="float-right"><app-red-light></app-red-light></div>
+          <h5 class="card-title">TRY IT</h5>
+          
+          <p class="card-text">You can pause to keep your settings, but clicking STOP will reset the elapsed measures count.</p>
+          
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-lg btn-success " [ngClass]="{'disabled': metro.getTimerState()=='running'}" (click)="clickService.startTimer(metro.tempo)">
+                  <i class="fas fa-play"></i>
+                </button>
+                <button type="button" class="btn btn-lg btn-warning" (click)="clickService.pauseTimer()" [ngClass]="{'disabled': metro.getTimerState()!='running'}">
+                  <i class="fas fa-pause"></i>
+                </button>
+                <button type="button" class="btn btn-lg btn-danger" (click)="clickService.stopTimer()" [ngClass]="{'disabled': metro.getTimerState()=='stopped' }">
+                  <i class="fas fa-stop"></i>
+                </button>
 
-<br>
+          </div>
 
+         
+
+          <hr />
+
+
+          <div class="col">
+            <h5>Tempo Change Rules</h5>
+            <p>
+              This demo shows the ability to change BPM dynamically during a click-track.</p>
+            <button type="button" name="editorModal" class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target=".bd-example-modal-lg">
+              <i class="fa fa-pen-nib"></i> Edit Rules</button>
+            <p>Below is displayed the time-based rules to enact (if any). Click the 'Edit Rules' button to delete, change or
+              create new rules.</p>
+            <p>An icon on each rule indicates if the rule is yet to be run
+              <i class="fas fa-clock text-warning"></i> or if it's already been enacted
+              <i class="fas fa-check text-success"></i>.</p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let tempochange of getOrderedTempoChanges()">
+                After {{tempochange.afterMeasure}} measures, change the tempo to {{tempochange.changeTempo}} bpm.
+                <span class="badge badge-dark badge-pill">
+                  <i class="fas fa-clock text-warning" *ngIf="!tempochange.done"></i>
+                  <i class="fas fa-check text-success" *ngIf="tempochange.done"></i>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<hr />
+<div class="row">
+  <div class="col">
+
+  </div>
+</div>
 <div class="col" hidden>
   <div class="btn-group" role="group" aria-label="Basic example">
     <button type="button" class="btn btn-success " (click)="clickService.fadeIn()">
@@ -159,8 +161,8 @@
                   <i class="fas fa-check text-success" *ngIf="tempochange.done"></i>
                 </div>
               </div>
-              <input type="number" name="afterMeasure" [(ngModel)]="tempochange.afterMeasure" class="form-control " [ngModelOptions]="{standalone:true}">
-              <input type="number" name="changeTempo" min="60" max="200" [(ngModel)]="tempochange.changeTempo" class="form-control " [ngModelOptions]="{standalone:true}">
+              <input type="number" name="afterMeasure" [(ngModel)]="tempochange.afterMeasure" class="form-control " [ngModelOptions]="{standalone:true}" placeholder="After Measure #">
+              <input type="number" name="changeTempo" min="60" max="200" [(ngModel)]="tempochange.changeTempo" class="form-control " placeholder="New Tempo #" [ngModelOptions]="{standalone:true}">
               <div class="input-group-append">
                 <button type="button" (click)="deleteRule(tempochange)" class="btn btn-sm btn-danger">X</button>
               </div>
@@ -169,8 +171,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="addNewRule()">New Row</button>
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"> <i class="fa window-close"></i>Save And Close</button>
+        <button type="button" class="btn btn-sm btn-primary" (click)="addNewRule()">
+          <i class="fa plus-square"></i> New Row</button>
       </div>
     </div>
   </div>

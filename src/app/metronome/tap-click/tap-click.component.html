@@ -1,10 +1,9 @@
 <div class="card">
 
   <div class="card-body">
-    <h5 class="card-title">Tap Your Tempo</h5>
-    <p class="card-text">Tap the spacebar or the TAP button at the beat you want until the ACCURACY bar is fill. The more consistantly you tap, the more accurate it will be.</p>
-    <div class="row">
-      <div class="col">
+    <h5 hidden class="card-title">... Or Tap Your Tempo</h5>
+        
+    
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <!-- removed click event for clickService.tap2tempo() replace with clickService.bufferTaps(e) -->
@@ -23,8 +22,8 @@
             </select>
           </div>
         </div>
-      </div>
-    </div>
+        <p class="card-text">Tap the <kbd>spacebar</kbd> or the <kbd>TAP</kbd> button to your favorite beat.
+          </p>  
     <div class="row" *ngIf="clickService.tempoEntries.length > 0">
       <div class="col">
         <p class="card-text">BUFFER ACCURACY</p>
@@ -41,5 +40,8 @@
       </div>
 
     </div>
+
+    <p class="card-text">
+        Don't stop until the ACCURACY bar is filled. <code>(consistency + time = accuracy)</code></p>
   </div>
 </div>

@@ -20,20 +20,20 @@ export class RedLightComponent implements OnInit {
   ngOnInit() {
     if (SVG.supported) {
       //this.clickService.visualCue =
-      let _svg = SVG('PulseSvg').size(50, 50);
-      let _bgC = _svg.circle(35)
-        .attr({ 'id': 'bg', 'cx': 25, 'cy': 25, fill: 'black', 'fill-opacity': 1 });
-      let _fgC = _svg.circle(30)
-        .attr({ 'id': 'fg', 'cx': 25, 'cy': 25, fill: 'red', 'fill-opacity': 1 });
-      let _fgH = _svg.circle(23)
-        .attr({ 'cx': 26, 'cy': 23, fill: 'white', 'fill-opacity': 0.4 });
+      let _svg = SVG('PulseSvg').size(75, 75);
+      let _bgC = _svg.circle(60)
+        .attr({ 'id': 'bg', 'cx': 30, 'cy': 30, fill: 'black', 'fill-opacity': 1 });
+      let _fgC = _svg.circle(60)
+        .attr({ 'id': 'fg', 'cx': 30, 'cy': 30, fill: 'red', 'fill-opacity': 0.1 });
+      let _fgH = _svg.circle(40)
+        .attr({ 'cx': 33, 'cy': 25, fill: 'white', 'fill-opacity': 0.4 });
         // let _fgH2 = _svg.circle(15)
         // .attr({'cx': 27, 'cy': 20, fill: 'white', 'fill-opacity': 0.2 });
 
         this.clickService.visualCue = _svg;
     }
     else {
-      alert('SVG note supported');
+      alert('SVG not supported');
       //   let _svg = document.createElement('svg');
       //   let _c1 = document.createElement('circle');
       //   let _c2 = document.createElement('circle');
