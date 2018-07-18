@@ -1,0 +1,80 @@
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Dynamic Tempo Rules</h5>
+          <p class="card-text">This test control is to demonstrate an ability to change BPM dynamically during a click-track.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngIf="clickService.tempoChanges==0">No Rules? You rebel!
+            <button type="button" name="editorModal" class="btn btn-sm btn-outline-primary " data-toggle="modal" data-target=".bd-example-modal-lg">
+              <i class="fa fa-pen-nib"></i> Try It</button>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let tempochange of getOrderedTempoChanges()">
+            After {{tempochange.afterMeasure}} measures, change the tempo to {{tempochange.changeTempo}} bpm.
+            <span class="badge badge-dark badge-pill">
+              <i class="fas fa-clock text-warning" *ngIf="!tempochange.done" data-toggle="tooltip" data-placement="left" title="waiting to run"></i>
+              <i class="fas fa-check text-success" *ngIf="tempochange.done" data-toggle="tooltip" data-placement="left" title="already run"></i>
+            </span>
+          </li>
+        </ul>
+        <div class="card-body">
+          <button type="button" name="editorModal" class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target=".bd-example-modal-lg">
+            <i class="fa fa-pen-nib"></i> Edit Rules</button>
+          
+          <p><strong>Icon Legend: </strong></p> 
+            <p><i class="fas fa-clock text-warning"></i> indicates if the rule is yet to be run. </p>
+            <p><i class="fas fa-check text-success"></i> indicates the rule has been enacted.</p>
+            
+        </div>
+      </div>
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Edit The Tempo Change Rules</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="validateRules()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>
+                  <strong>Instructions:</strong> Click <kbd>New Rule</kbd> button to create a rule, and enter the new Tempo and when to trigger the change.
+                </p>
+                <div class="col-6-sm" *ngFor="let tempochange of clickService.tempoChanges">
+                  <form>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <input type="checkbox" aria-label="Checkbox for following text input" [(ngModel)]="tempochange.done" [id]="isDone" hidden
+                            [ngModelOptions]="{standalone:true}">
+                          <i class="fas fa-clock text-warning" *ngIf="!tempochange.done"></i>
+                          <i class="fas fa-check text-success" *ngIf="tempochange.done"></i>
+                        </div>
+                      </div>
+
+                      <input type="number" name="changeTempo" min="60" max="200" [(ngModel)]="tempochange.changeTempo" class="form-control " placeholder="New Tempo #"
+                        [ngModelOptions]="{standalone:true}" required>
+
+                      <input type="number" name="afterMeasure" [(ngModel)]="tempochange.afterMeasure" class="form-control " [ngModelOptions]="{standalone:true}"
+                        placeholder="After Measure #" required>
+        
+                      <div class="input-group-append">
+                        <button type="button" (click)="deleteRule(tempochange)" class="btn btn-sm btn-outline-danger" title="Delete"><span aria-hidden="true">&times;</span> </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" (click)="validateRules()">
+                  <i class="fa window-close"></i>Save And Close</button>
+                <button type="button" class="btn btn-sm btn-primary" (click)="addNewRule()">
+                  <i class="fa plus-square"></i> New Rule</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+  
+  

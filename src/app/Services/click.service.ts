@@ -27,6 +27,7 @@ export class ClickService {
   ticker: Observable<number>;
   tempoChanges: Array<TempoChangeRule>;
   visualCue: SVG.Doc;
+  trackFace: SVG.Doc;
   lightOn: boolean = true;
   audioElement: HTMLAudioElement;
 
@@ -193,11 +194,14 @@ export class ClickService {
     let animIn = { duration: 150, ease: '<', delay: 50 };
     let animOut = { duration: 150, ease: '>', delay: 50 };
     let redBulb = this.visualCue.select('#fg').first();
-
+    let faceIndicator = this.trackFace.select('#quarternote').first();
+    let faceBmpVal = this.trackFace.select('#bpmVal').first();
+    faceBmpVal.node.childNodes[0].textContent = this.metro.tempo.toString();
     redBulb.animate(animIn).attr({ 'fill-opacity': 1 });
+    faceIndicator.animate(animIn).attr({ 'fill-opacity': 1 });
     this.playSound();
     redBulb.animate(animOut).attr({ 'fill-opacity': 0.1 });
-
+    faceIndicator.animate(animOut).attr({ 'fill-opacity': 0.3 });
     this.ticks = t + 1;
     if (++this.currentBeat > this.metro.timesignature[0]) {
       this.resetBeat();

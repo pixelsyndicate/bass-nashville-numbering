@@ -24,11 +24,14 @@ import { NNLegendComponent } from './fretboard/nnlegend.component';
 import { VoicesComponent } from './chords/voices.component'
 import { MetronomeComponent } from './metronome/metronome.component';
 import { TapClickComponent } from './metronome/tap-click/tap-click.component';
-import { RedLightComponent } from './metronome/red-light/red-light.component';
+import { RedLightComponent, TrackFaceComponent } from './metronome/red-light/red-light.component';
+import { TempoRulesComponent } from './metronome/tempo-rules/tempo-rules.component';
 
 
 @NgModule({
-  declarations: [AppComponent, FretboardComponent, BassScalesComponent, ChordsComponent, MarkersComponent, FretComponent, NNLegendComponent, YourNumbersComponent, VoicesComponent, MetronomeComponent, TapClickComponent, RedLightComponent], 
+  declarations: [AppComponent, FretboardComponent, BassScalesComponent, ChordsComponent, MarkersComponent, FretComponent, 
+    NNLegendComponent, YourNumbersComponent, VoicesComponent, MetronomeComponent, TapClickComponent, RedLightComponent, TempoRulesComponent,
+  TrackFaceComponent], 
   imports: [BrowserModule, FormsModule, AppRoutingModule, ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })],
   providers: [ChordService, BassService, ScaleService, ClickService],
   bootstrap: [AppComponent]
