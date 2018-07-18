@@ -130,7 +130,8 @@ export class TrackFaceComponent implements OnInit {
    
       let tempo_display = ui_face.group().move(0,faceRadius-45);
      
-      let bpmVal = tempo_display.text('120').dmove(faceRadius/4,3).style({'font-size': '18px','font-family': 'MyriadPro-Regular, Myriad Pro'}).attr({id:'bpmVal'});
+      let bpmVal = tempo_display.text('120').dmove(faceRadius/4,3).style({'font-size': '18px','font-family': 'MyriadPro-Regular, Myriad Pro'})
+      .attr({id:'bpmVal'});
       let bpmText = tempo_display.text('BPM').dmove(faceRadius/2,3).style({'font-size': '18px','font-family': 'MyriadPro-Regular, Myriad Pro'});
 
 
