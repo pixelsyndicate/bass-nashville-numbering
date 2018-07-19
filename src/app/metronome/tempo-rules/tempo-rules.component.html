@@ -5,7 +5,7 @@
           <p class="card-text">This test control is to demonstrate an ability to change BPM dynamically during a click-track.</p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex justify-content-between align-items-center" *ngIf="clickService.tempoChanges==0">No Rules? You rebel!
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngIf="clickService.tempoChanges.length==0">No Rules? You rebel!
             <button type="button" name="editorModal" class="btn btn-sm btn-outline-primary " data-toggle="modal" data-target=".bd-example-modal-lg">
               <i class="fa fa-pen-nib"></i> Try It</button>
           </li>

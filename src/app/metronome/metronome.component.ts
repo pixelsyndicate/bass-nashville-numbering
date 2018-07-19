@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ClickService, Metronome, TempoChangeRule } from '../Services/click.service';
-
+import { ClickService, Metronome } from '../Services/click.service';
+import * as SVG from 'svg.js';
 
 @Component({
   selector: 'app-metronome',
@@ -11,11 +11,6 @@ export class MetronomeComponent implements OnInit {
 
   metro: Metronome;
   clickService: ClickService;
-
-
-
-
-
 
   constructor(clickService: ClickService) {
     this.clickService = clickService;
@@ -40,9 +35,9 @@ export class MetronomeComponent implements OnInit {
     aud.appendChild(audSrc);    
     // document.body.appendChild(aud);
 
-    
+    // register elements with the service that will be affected by fact actions
     this.clickService.audioElement = aud;
-
+    
   }
 
 }

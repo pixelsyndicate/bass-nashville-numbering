@@ -1,0 +1,37 @@
+<div class="container">
+  <!-- <div class="col">
+    <p>Dynamic Generation</p>
+    <div id="TrackFace" style="width:100%; height:auto;"></div>
+  </div> -->
+
+  <div class="row justify-content-center"> 
+    <div style="max-width: 500px;  height:auto;" class="col ">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 185.48 185.48">
+      <title>click_track_face</title>
+      <g id="ui_face">
+        <circle id="face_bg" cx="92.74" cy="92.74" r="92.74" />
+        <g id="current_beat">
+          <text transform="translate(82 108.84)" style="font-size: 100px; fill: none; stroke: #fff; stroke-miterlimit: 10; stroke-width: 1.7px; font-family: 'Ubuntu', sans-serif;">
+            {{clickService.currentBeat}}
+          </text>
+        </g>
+        <g id="time_signature">
+          <text transform="translate(17.64 130.48)" style="font-size: 18px;fill: #fff;font-family: 'Ubuntu', sans-serif;">
+            {{clickService.metro.timesignature[0]}} / {{clickService.metro.timesignature[1]}}</text>
+        </g>
+        <g id="division_display">
+          <path id="quarternote" d="M44.77,44.59v50.6c0,6.63-4.7,12-10.5,12s-10.5-5.37-10.5-12,4.7-12,10.5-12a9.56,9.56,0,0,1,6,2.16V44.59Z"
+            style="fill: #c1272d;" />
+          <circle id="littleShiney" r="5" cx="35" cy="91" style="fill:#fff; fill-opacity: 0.1;"></circle>
+        </g>
+        <path id="lower_face_arc" d="M17.74,142.68h150a90.31,90.31,0,0,1-150,0Z" style="fill: #fff;stroke: #fff;stroke-miterlimit: 10;stroke-width: 2px"
+        />
+        <g id="tempo_display">
+          <text transform="translate(56.22 167.74)" style="font-size: 18px;font-family: 'Ubuntu', sans-serif;">
+            {{clickService.metro.tempo}} BPM</text>
+        </g>
+      </g>
+    </svg>
+    </div>
+  </div>
+</div>

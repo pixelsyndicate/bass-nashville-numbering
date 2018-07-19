@@ -1,11 +1,16 @@
 import { Injectable, OnInit } from '@angular/core';
-import { interval, Observable, Subscription } from 'rxjs';
+import { interval, Observable, Subscription, throwError } from 'rxjs';
 import * as SVG from 'svg.js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClickService {
+
+  trackFace: SVG.Doc;
+  SvgUi: any = {
+    beatText: SVG.Text,
+  };
 
 
   private calculateAverage(difBuf: number[]): number {
@@ -27,16 +32,19 @@ export class ClickService {
   ticker: Observable<number>;
   tempoChanges: Array<TempoChangeRule>;
   visualCue: SVG.Doc;
-  trackFace: SVG.Doc;
+
   lightOn: boolean = true;
   audioElement: HTMLAudioElement;
 
+  pulseElementCollection: SVG.Element[];
   constructor() {
     this.metro = new Metronome();
     this.currentMeasure = 0;
     this.currentBeat = 0;
     this.measuresElapsed = 0;
     this.avgDiffBuffer = [];
+    this.pulseElementCollection = [];
+
   }
 
   /* BEGIN TAP TO SET TEMPO */
@@ -48,6 +56,7 @@ export class ClickService {
   tempoEntriesBufferTimeout: number;
   averageMs: number = 0;
   msMultiplier: number;
+
 
   /* This is used by the HTML accuracy progress-bar  */
   getTapAccuracy(): number {
@@ -74,7 +83,7 @@ export class ClickService {
 
   avgTimespan(t: number): number {
     let totalTs: number = 0;
-     if (this.tempoEntries.length < this.tempoEntriesMax) {
+    if (this.tempoEntries.length < this.tempoEntriesMax) {
       this.tempoEntries.push(t);
     }
     else {
@@ -92,14 +101,14 @@ export class ClickService {
     // get average diffs and output
     this.tempoEntries.forEach((entry, i, arr) => {
       let val = entry;
-      if(arr[i-1]){
-        let diffVal = (val - arr[i-1]);
+      if (arr[i - 1]) {
+        let diffVal = (val - arr[i - 1]);
         this.avgDiffBuffer.push(diffVal);
-      }   
+      }
     });
 
     return this.calculateAverage(this.avgDiffBuffer);
-    
+
   }
 
   tapBufferAction(num: number): number {
@@ -138,8 +147,8 @@ export class ClickService {
 
   startTimer(bpm: number): void {
 
-    if(this.metro.getTimerState() == 'running')
-    return;
+    if (this.metro.getTimerState() == 'running')
+      return;
 
     this.metro.timerStart();
 
@@ -151,19 +160,20 @@ export class ClickService {
   }
 
   private toBeatOrNotToBeat(t: number, s: Subscription): any {
+    
     // if timer stopped then unsubscribe
+
     if (this.metro.getTimerState() === "stopped" || this.metro.getTimerState() === "paused") {
       s.unsubscribe();
-      this.fadeOut();
+      this.fadeOut([]);
       return;
     }
     else {
       // check rules
       this.tempoChanges.forEach((tc) => {
-
         if (tc.done == false && tc.afterMeasure == this.measuresElapsed) {
           s.unsubscribe();
-          this.fadeOut();
+          this.fadeOut([]);
           this.metro.timerPause();
           this.metro.tempo = tc.changeTempo;
           tc.done = true;
@@ -173,7 +183,7 @@ export class ClickService {
       });
 
       // todo: maybe dont need this here
-      this.fadeIn();
+      //this.fadeIn([glassLight, faceDivisionDisplay]);
       this.doBeat(t);
     }
 
@@ -182,7 +192,7 @@ export class ClickService {
   private playSound() {
 
     this.audioElement.play().then(() => {
-      
+
     }).catch((error) => {
       // An error ocurred or the user agent prevented playback.
       console.log("Error in this.audioElement.play() ... " + error);
@@ -191,17 +201,11 @@ export class ClickService {
 
   private doBeat(t: number): any {
 
-    let animIn = { duration: 150, ease: '<', delay: 50 };
-    let animOut = { duration: 150, ease: '>', delay: 50 };
-    let redBulb = this.visualCue.select('#fg').first();
-    let faceIndicator = this.trackFace.select('#quarternote').first();
-    let faceBmpVal = this.trackFace.select('#bpmVal').first();
-    faceBmpVal.node.childNodes[0].textContent = this.metro.tempo.toString();
-    redBulb.animate(animIn).attr({ 'fill-opacity': 1 });
-    faceIndicator.animate(animIn).attr({ 'fill-opacity': 1 });
+    //this.fadeIn([glassLight, faceDivisionDisplay]);
+    let pElems = this.pulseElementCollection;
+    this.pulseElements(this.pulseElementCollection);
     this.playSound();
-    redBulb.animate(animOut).attr({ 'fill-opacity': 0.1 });
-    faceIndicator.animate(animOut).attr({ 'fill-opacity': 0.3 });
+
     this.ticks = t + 1;
     if (++this.currentBeat > this.metro.timesignature[0]) {
       this.resetBeat();
@@ -210,6 +214,11 @@ export class ClickService {
         this.resetMeasure();
       }
     }
+
+    // SVG.select('g#current_beat > text').first().node.textContent = 
+    // this.currentBeat.toString();
+
+    // this.trackFace.select('g > #currentBeat > tspan').first().attr({'text':this.currentBeat});
   }
 
   private resetBeat(): void {
@@ -243,23 +252,38 @@ export class ClickService {
   //  <circle id="lightOn"  cx="25"  cy="25"  r="22" stroke="silver" stroke-width="2" fill="red" class="fade-out one" />
   // </svg>
 
-  fadeIn() {
-    this.lightOn = true;
-    let anim = { duration: 250, ease: '<', delay: 100 };
-    this.visualCue.select('#fg').first()
-      //.animate(anim)
-      .attr({ 'fill-opacity': 1 });
+  pulseElements(sElements: SVG.Element[]) {
+    if (!sElements || sElements.length == 0)
+      sElements = this.pulseElementCollection;
+    sElements.forEach(x => {
+      x.attr({ 'fill-opacity': 1 })
+        .animate(this.metro.tempo/2, '<')
+        .attr({ 'fill-opacity': 0.3 });
+
+    });
   }
 
-  fadeOut() {
-    this.lightOn = false;
-    let anim = { duration: 100, ease: '>', delay: 0 };
-    this.visualCue
-      .select('#fg').first(
 
-      )
-      // .animate(anim)
-      .attr({ 'fill-opacity': .1 });
+  fadeIn(sElements: SVG.Element[]) {
+    this.lightOn = true;
+    let animIn = { duration: this.metro.tempo * 2, ease: '<', delay: this.metro.tempo*2};
+      if (!sElements || sElements.length == 0)
+        sElements = this.pulseElementCollection;
+  
+        sElements.forEach(x => {
+          x.animate(animIn).attr({ 'fill-opacity': 1.0 })
+        });
+  }
+
+  fadeOut(sElements: SVG.Element[]) {
+    this.lightOn = false;
+    let animOut = { duration: this.metro.tempo * 2, ease: '>', delay: this.metro.tempo*2};
+    if (!sElements || sElements.length == 0)
+      sElements = this.pulseElementCollection;
+
+      sElements.forEach(x => {
+        x.animate(animOut).attr({ 'fill-opacity': 0.3 })
+      });
   }
 
   clearStyle() {

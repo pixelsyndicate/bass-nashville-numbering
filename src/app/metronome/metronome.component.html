@@ -2,98 +2,128 @@
   <strong>Instructions: </strong> Set your starting temp using the slider or number entry field. Set your time signature. Edit your
   rules. Then Start the demo.
 </p>
-<!-- tempo (bpm) setter -->
+
 <div class="row">
-  <div class="col-sm-6 col-md-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Set Your BPM</h5>
-        <h6 class="card-subtitle mb-2 text-muted">'beats per minute' aka. 'tempo'</h6>
-        <input type="range" name="tempo" class="form-control-range" min="15" max="500" id="formControlRange" [(ngModel)]="metro.tempo">
-        <hr />
-        <div class="row justify-content-md-center">
-          <div class="col col-md-auto">
-            <input type="number" name="tempo2" placeholder="BPM" class="form-control form-control-lg" style="max-width: 6em;" [(ngModel)]="metro.tempo"
-              min="15" max="500">
+  <div class="col-sm-6 col-md-5 col-lg-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Set Your Tempo</h5>
+          <h6 class="card-subtitle mb-2 text-muted"> aka. 'beats per minute'</h6>
+          <input type="range" name="tempo" class="form-control-range" min="15" max="500" id="formControlRange" [(ngModel)]="metro.tempo">
+          <hr />
+          <div class="row justify-content-md-center">
+            <div class="col col-md-auto">
+              <div class="input-group mb-2 mr-sm-2" style="font-size: 2em; ">
+                <input type="number" name="tempo2" placeholder="BPM" class="form-control form-control-lg" style="max-width: 6em;" [(ngModel)]="metro.tempo"
+                  min="15" max="500">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span>BPM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h5 class="card-title">Set Your Time Signature</h5>
+          <h6 class="card-subtitle mb-2 text-muted"> e.g. '# of beats per # of measures'</h6>
+          <div class="row justify-content-md-center">
+            <div class="col  col-md-auto">
+              <div class="input-group mb-2 mr-sm-2" style="font-size: 2em; ">
+                <div class="input-group-prepend">
+                  <input type="number" name="signature0" class="form-control-lg" style="max-width: 3em;" min="3" max="8" [(ngModel)]="metro.timesignature[0]">
+                </div>
+                <div class="input-group-text">
+                  <span>/</span>
+                </div>
+                <div class="input-group-append">
+                  <input type="number" name="signature1" class="form-control-lg" style="max-width: 3em;" min="3" max="8" [(ngModel)]="metro.timesignature[1]">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col">
-    <app-tap-click></app-tap-click>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-6 col-md-4">
-    <!-- set time signature -->
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Time Signature</h5>
-        <div class="row justify-content-md-center">
-          <div class="col  col-md-auto">
-            <div class="input-group mb-2 mr-sm-2" style="font-size: 2em; ">
-              <div class="input-group-prepend">
-                <input type="number" name="signature0" class="form-control-lg" style="max-width: 3em;" min="3" max="8" [(ngModel)]="metro.timesignature[0]">
-              </div>
-              <div class="input-group-text">
-                <span>/</span>
-              </div>
-              <div class="input-group-append">
-                <input type="number" name="signature1" class="form-control-lg" style="max-width: 3em;" min="3" max="8" [(ngModel)]="metro.timesignature[1]">
-              </div>
-            </div>
-            <p class="card-text">
-              <strong>
-                Beat
-                <span class="text-info">{{clickService.currentBeat}}</span>
-              </strong> /
-              <strong>Measure
-                <span class="text-info">{{clickService.currentMeasure}}</span>
-              </strong>
-              <br>
-              <strong>Elapsed Measures:
-                <span class="text-info">{{clickService.measuresElapsed}}</span>
-              </strong>
-            </p>
-          </div>
-        </div>
+    <div class="col">
+      <app-tap-click></app-tap-click>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
 
+
+        </div>
       </div>
     </div>
   </div>
   <div class="col">
     <form>
-      <!-- try it card  -->
       <div class="card">
         <div class="card-body">
-          <div class="float-right">
-            <app-red-light></app-red-light>
-          </div>
+
           <h5 class="card-title">TRY IT</h5>
-          <p class="card-text">You can pause to keep your settings, but clicking STOP will reset the elapsed measures count.</p>
-          <div class="btn-group" role="group" aria-label="Click Controls">
-            <button type="button" class="btn btn-lg btn-success" *ngIf="metro.getTimerState()!='running'"             
-              (click)="clickService.startTimer(metro.tempo)">
-              <i class="fas fa-play"></i>
-            </button>
-            <button type="button" class="btn btn-lg btn-warning" *ngIf="metro.getTimerState()=='running'" 
-              [disabled]=" metro.getTimerState()!='running'" (click)="clickService.pauseTimer()">
-              <i class="fas fa-pause"></i>
-            </button>
-            <button type="button" class="btn btn-lg btn-danger" [ngClass]="{'btn-danger':metro.getTimerState()!='stopped', 'btn-outline-danger':metro.getTimerState()=='stopped'}"
-              [disabled]="metro.getTimerState()=='stopped'" (click)="clickService.stopTimer()">
-              <i class="fas fa-stop"></i>
-            </button>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col">
+                <div class="btn-group" role="group" aria-label="Click Controls">
+                  <button type="button" class="btn btn-lg btn-success" *ngIf="metro.getTimerState()!='running'" (click)="clickService.startTimer(metro.tempo)">
+                    <i class="fas fa-play"></i>
+                  </button>
+                  <button type="button" class="btn btn-lg btn-warning" *ngIf="metro.getTimerState()=='running'" [disabled]=" metro.getTimerState()!='running'"
+                    (click)="clickService.pauseTimer()">
+                    <i class="fas fa-pause"></i>
+                  </button>
+                  <button type="button" class="btn btn-lg btn-danger" [ngClass]="{'btn-danger':metro.getTimerState()!='stopped', 'btn-outline-danger':metro.getTimerState()=='stopped'}"
+                    [disabled]="metro.getTimerState()=='stopped'" (click)="clickService.stopTimer()">
+                    <i class="fas fa-stop"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col">
+                <p class="card-text">
+                  <strong>
+                    Beat
+                    <span class="text-info">{{clickService.currentBeat}}</span>
+                  </strong> /
+                  <strong>Measure
+                    <span class="text-info">{{clickService.currentMeasure}}</span>
+                  </strong>
+                  <br>
+                  <strong>Elapsed Measures:
+                    <span class="text-info">{{clickService.measuresElapsed}}</span>
+                  </strong>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+                <p class="card-text">You can pause to keep your settings, but clicking STOP will reset the elapsed measures count.</p>
+              </div>
+            <div class="row">
+              <div class="col">
+                <div class="float-right"  >
+                  <app-red-light></app-red-light>
+                </div>
+                <app-metro-face></app-metro-face>
+              </div>
+
+            </div>
+            
           </div>
-          <app-track-face></app-track-face>
+
+
+
+
         </div>
       </div>
     </form>
+
   </div>
 </div>
+
 <div class="row">
-    <div class="col">
-        <app-tempo-rules ></app-tempo-rules>
-      </div>
-    </div>
+  <!-- set rules -->
+  <div class="col">
+    <app-tempo-rules></app-tempo-rules>
+  </div>
+</div>
